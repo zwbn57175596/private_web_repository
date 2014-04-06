@@ -1,0 +1,138 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* css reset from yahoo YUI */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 	margin:0;	padding:0;}
+table {	border-collapse:collapse;	border-spacing:0;}
+fieldset,img { 	border:0;}
+address,caption,cite,code,dfn,em,strong,th,var {	font-style:normal;	font-weight:normal;}
+ol,ul {	list-style:none;}
+caption,th {	text-align:left;}
+h1,h2,h3,h4,h5,h6 {	font-size:100%;	font-weight:normal;}
+q:before,q:after {	content:'';}
+abbr,acronym,input { border:0;}
+/* css reset from yahoo YUI  END*/
+
+body {
+	font-family: "宋体";
+	font-size: 12px;
+}
+
+.top {
+	height: 32px;
+	line-height: 32px;
+	background-color: #F1F1F1;
+}
+
+.top  .top_left {
+	margin-left: 193px;
+}
+
+.top .top_right {
+	float: right;
+	margin-right: 200px;
+}
+
+.middle {
+	margin-top: 28px;
+	height: 60px;
+	font-size: 24px;
+}
+
+.middle .search {
+	float: right;
+	width: 467px;
+	height: 45px;
+	background-color: #f80b00;
+	margin: 13px 28px 0 0;
+}
+
+.middle .search .search_shops {
+	background-color: #f2f2f2;
+	display: -moz-inline-box;
+	display: inline-block;
+	height: 38px;
+	line-height: 39px;
+	margin: 3px 0px 3px 3px;
+	width: 68px;
+	float: left;
+	font-size: 18px;
+	padding-left: 16px;
+}
+
+.middle .search .search_input {
+	float: left;
+}
+
+.middle .search input{
+	margin: 3px 0px 3px 0px;
+	height: 38px;
+	line-height: 38px;
+	width: 275px;
+	padding: 0;
+}
+
+.middle .search .search_button {
+	float: right;
+	width: 98px;
+	height: 41px;
+	line-height: 41px;
+	text-align: center;
+	margin: 3px 3px 3px 0px;
+	color: #ffffff;
+}
+
+.middle .middle_right {
+	float:right;
+	margin: 13px 318px 0 0;
+}
+
+.middle .middle_left {
+	margin-left: 175px;
+}
+
+.nav {
+	height: 43px;
+	background-color: #dc0008
+}
+
+.nav .allshops {
+	display: -moz-inline-box;
+	display: inline-block;
+	width: 170px;
+	height: 43px;
+	line-height: 43px;
+	font-size: 12px;
+	color: #ffffff;
+	float: left;
+	margin-left: 177px;
+	font-weight: bold;
+}
+
+.nav .nav_bar ul {
+	float: left;
+	width: 760px;
+}
+
+.nav .nav_bar ul li {
+	float: left;
+	height: 19px;
+	line-height: 19px;
+	width: 60px;
+	padding: 12px 23px;
+	font-size: 14px;
+	color: #ffffff;
+	font-weight: bold;
+	text-align: center;
+}
+
+.nav .nav_bar .selected {
+	background-color: #f70101;
+	/*box-shadow: 5px -5px 1px 1px #dc0008 inset;*/
+}
+
+.divide_line {
+	height: 8px;
+	border: 0;
+	border-bottom: 2px solid #edbcac;
+}
