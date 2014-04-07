@@ -1,4 +1,13 @@
 // JavaScript Document
+// navbar
+$(function(){
+	$(".nav_bar li").each(function(index, element) {
+        $(this).on("click", this, function (e) {
+			$(this).siblings().removeClass("selected");
+			$(this).addClass("selected");	
+		});
+    });
+});
 // multinavbar
 $(function(){
 	function clearSelected() {

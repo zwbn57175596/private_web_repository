@@ -145,7 +145,7 @@ body {
 }
 
 .nav .nav_bar .selected {
-	background-color: #f70101;
+	background: url(../images/nav_selected.png) no-repeat;
 	/*box-shadow: 5px -5px 1px 1px #dc0008 inset;*/
 }
 
@@ -525,7 +525,8 @@ body {
 
 
 .quickmodule .quick_phone_content input {
-	width: 123px;
+	width: 116px;
+	padding-left: 7px;
 	height: 23px;
 	float: right;
 }
@@ -604,11 +605,11 @@ body {
 	float: left;
 	margin-top: 16px;
 	width: 200px;
-	margin-left: 30px;
+	margin-left: 45px;
 }
 
 .main_bottom .bottom .bottom_header {
-	margin-left: 16px;
+	margin-left: 0px;
 	margin-bottom: 10px;
 	min-height: 50px;
 }
@@ -654,6 +655,7 @@ body {
 
 .footer_line {
 	height: 0px;
+	border: 0px;
 	border-top: 1px solid #efefef;
 	margin-top: 34px;
 }
