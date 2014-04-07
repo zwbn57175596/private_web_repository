@@ -367,9 +367,9 @@ body {
 .quick_search input {
 	color: #ffffff;
 	margin-left: 14px;
-	width: 60px;
+	width: 74px;
 	height: 24px;
-	background-color: #e50000;
+	background: url(../images/button_red.png) no-repeat;
 }
 
 .sugest_shop {
@@ -412,9 +412,9 @@ body {
 }
 
 .cardcheck h3 {
-	background-color: #e94947;
-	height: 40px;
-	line-height: 40px;
+	background: url(../images/checkcard_title.png) repeat-x;
+	height: 39px;
+	line-height: 39px;
 	color: #ffffff;
 	font-size: 16px;
 	font-weight: bolder;
@@ -424,9 +424,18 @@ body {
 .cardcheck input {
 	margin-left: 12px;
 	margin-top: 12px;
-	width: 220px;
+	width: 182px;
+	padding-left: 38px;
 	height: 32px;
 	border: 1px solid #acacac;
+}
+
+#cardno {
+	background: url(../images/card_no_icon.png) #ffffff no-repeat 7% center;
+}
+
+#cardpwd {
+	background: url(../images/card_pwd_icon.png) #ffffff no-repeat 7% center;
 }
 
 .cardcheck .validatecode {
@@ -439,14 +448,16 @@ body {
 	width: 56px;
 	height: 22px;
 	float: left;
+	padding: 0;
 	margin-top: 9px;
 	margin-left: 6px;
 }
 
 .cardcheck .cardsubmit {
-	background-color: #e84646;
-	width: 64px;
+	background: url(../images/cardcheck_submit.png) no-repeat;
+	width: 62px;
 	height: 26px;
+	padding: 0;
 	margin-left: 6px;
 	margin-top: 8px;
 	color: #ffffff;
@@ -644,7 +655,7 @@ body {
 .footer_line {
 	height: 0px;
 	border-top: 1px solid #efefef;
-	margin-top: 35px;
+	margin-top: 34px;
 }
 
 .footer {
@@ -654,7 +665,13 @@ body {
 }
 
 .footer .icp {
-	margin-top: 28px;
+	margin-top: 23px;
+	text-align: center;
+	color: #999999;
+}
+
+.footer .icp1 {
+	margin-top: 9px;
 	text-align: center;
 	color: #999999;
 }
