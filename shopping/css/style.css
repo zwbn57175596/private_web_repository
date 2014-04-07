@@ -94,8 +94,7 @@ body {
 }
 
 .middle .middle_qcode {
-	margin: 0;
-	margin-left: 14px;
+	margin: 4px 0 0 14px;
 	float: left;
 }
 
