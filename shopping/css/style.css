@@ -41,7 +41,7 @@ body {
 .middle {
 	width: 986px;
 	margin: 0 auto;
-	height: 120px;
+	height: 113px;
 	font-size: 24px;
 }
 
@@ -94,7 +94,7 @@ body {
 }
 
 .middle .middle_qcode {
-	margin: 4px 0 0 14px;
+	margin: 0px 0 0 14px;
 	float: left;
 }
 
@@ -104,7 +104,7 @@ body {
 }
 
 .nav {
-	height: 43px;
+	height: 42px;
 	background-color: #dc0008;
 	width: 100%;
 }
@@ -118,8 +118,8 @@ body {
 	display: -moz-inline-box;
 	display: inline-block;
 	width: 170px;
-	height: 43px;
-	line-height: 43px;
+	height: 42px;
+	line-height: 42px;
 	font-size: 12px;
 	color: #ffffff;
 	float: left;
@@ -134,8 +134,8 @@ body {
 
 .nav .nav_bar ul li {
 	float: left;
-	height: 19px;
-	line-height: 19px;
+	height: 18px;
+	line-height: 18px;
 	width: 60px;
 	padding: 12px 23px;
 	font-size: 14px;
@@ -150,7 +150,7 @@ body {
 }
 
 .divide_line {
-	height: 4px;
+	height: 2px;
 	border: 0;
 	border-bottom: 1px solid #edbcac;
 	margin-bottom: 0px;
@@ -173,6 +173,7 @@ body {
 }
 
 .multinav ul{
+	width: 100%;
 }
 
 .multinav ul li {
@@ -180,13 +181,24 @@ body {
 	line-height: 36px;
 	margin: 0;
 	font-size: 14px;
-	text-align: center;
+	text-align: left;
+	color: #f74000;
+	padding-left: 60px;
 	border-left: 1px solid #f4d1c5;
 	border-bottom: 1px solid #f4d1c5;
 	border-top: 0px;
 	border-right: 1px solid #f4d1c5;
+	background: url(../images/multi_nav_icon.png) no-repeat 95% 45%;
+	position: relative;
 }
 
+.multinav ul li img {
+	position: absolute;
+	left: 22px;
+	top: 8px;
+	float: left;
+}
+	
 .multinav .selected {
 	-moz-box-shadow: 0 0 10px #DDD;
 	-webkit-box-shadow: 0 0 10px #DDD;
@@ -369,13 +381,14 @@ body {
 }
 
 .sugest_shop h3 {
-	height: 24px;
-	line-height: 26px;
-	font-size: 16px;
+	height: 22px;
+	line-height: 24px;
+	font-size: 14px;
 	font-weight: bolder;
 	text-align: left;
 	color: #747474;
-	margin-top: 10px;
+	margin-top: 6px;
+	margin-bottom: 2px;
 	margin-left: 14px;
 }
 
@@ -384,7 +397,7 @@ body {
 }
 
 .sugest_shop table td {
-	padding: 10px;
+	padding: 0 10px 20px 10px;
 }
 
 .main_right {
@@ -540,7 +553,13 @@ body {
 	background-color: #ffffff;
 }
 
+.newsmodule .newsmodule_contents {
+	position: relative;
+}
+
 .newsmodule .newsmodule_content {
+	position: absolute;
+	top: 37px; 	
 	float: left;
 	margin-left: 24px;
 	margin-top: 12px;
@@ -572,7 +591,7 @@ body {
 
 .main_bottom .bottom {
 	float: left;
-	margin-top: 13px;
+	margin-top: 16px;
 	width: 200px;
 	margin-left: 30px;
 }
@@ -625,7 +644,7 @@ body {
 .footer_line {
 	height: 0px;
 	border-top: 1px solid #efefef;
-	margin-top: 28px;
+	margin-top: 35px;
 }
 
 .footer {
