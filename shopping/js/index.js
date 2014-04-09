@@ -1,19 +1,37 @@
 // JavaScript Document
-// navbar
+
 $(function(){
+	// city_list
+	window.showCityList = function () {
+		$(".city_panel").fadeIn(100);
+	}
+	
+	$(".city_panel").on("mouseleave", function(e){
+		$(".city_panel").fadeOut(100);	
+	});
+	// search type
+	$(".search_shops").on("click", function(e){
+		e.stopPropagation();
+		$(".search_list").fadeIn(100);	
+	});
+	$(document).on("click", function(e){
+		$(".search_list").fadeOut(100);
+	});
+	
+	// navbar
 	$(".nav_bar li").each(function(index, element) {
         $(this).on("click", this, function (e) {
 			$(this).siblings().removeClass("selected");
 			$(this).addClass("selected");	
 		});
     });
-});
-// multinavbar
-$(function(){
+
+	// multinavbar
 	function clearSelected() {
 		$(".multinav_bar li").removeClass("selected");
 		$(".multinav_tips .tip").hide();
 	}
+	
 	// $(".multinav_bar").on("mouseleave", clearSelected);
 	$(".multinav_bar li").each(function (index, element) {
 		$(this).on("mouseover", function (e){
@@ -29,10 +47,7 @@ $(function(){
         $(this).on("mouseleave", clearSelected);
     });
 	
-});
-
-// newsmodule_label event
-$(function(){
+	// newsmodule_label event
 	$(".newsmodule_label li").each(function(index, element) {
         $(this).on("mouseover", function (e){
 			$(this).siblings().removeClass("selected");
