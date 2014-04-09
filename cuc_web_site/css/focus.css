@@ -1,0 +1,48 @@
+.clear {
+	overflow: hidden;
+	clear: both;
+	width: 0px;
+	height: 0px;
+}
+
+.imgbox {
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 10px;
+	width:893px;
+}
+
+.imgbox ul {
+	padding: 0px;
+	margin: 0px;
+}
+
+.imgbox ul li {
+	float: left;
+	list-style: none;
+}
+
+.imgbox ul li.select {
+	display: block;
+}
+
+.imgnum span {
+	border-radius: 10px;
+	font: normal normal bold 12px/15px ΢���ź�;
+	color: #FFF;
+	margin-left: 5px;
+	padding: 3px 6px 3px 6px;
+	background-color: #F90;
+	cursor: pointer;
+}
+
+.imgnum span.onselect {
+	background-color: #F00;
+}
+
+.imgnum {
+	text-align: center;
+	float: right;
+	margin: -30px 30px;
+	position: relative;
+}
