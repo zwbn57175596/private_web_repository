@@ -395,7 +395,7 @@
             </ul>
             <div class="quick_search_subpanel quick_search_subtype">
             	<div><a href="javascript:void(0)">[所有类别]</a></div>
-                <ul class="subtype">
+                <ul class="subtype_list">
                     <li><a href="javascript:void(0)" class="current">北京</a></li><li><a href="javascript:void(0)">北京</a></li><li><a href="javascript:void(0)">北京北京</a></li><li><a href="javascript:void(0)">北京北京</a></li><li><a href="javascript:void(0)">北京</a></li><li><a href="javascript:void(0)">北京北京</a></li><li><a href="javascript:void(0)">北京北京</a></li><li><a href="javascript:void(0)">北京北京</a></li><li><a href="javascript:void(0)">北京北京</a></li><li><a href="javascript:void(0)">北京北京</a></li>
                 </ul>
                 <dl><dt><a href="javascript:void(0)">华北东北:</a></dt>
@@ -434,10 +434,14 @@
         </div>
         <div class="sugest_shop">
         	<h3>推荐商户</h3>
-            <table>
+            <div class="scroller" id="scroller_container">
+            <table><tr><td id="scroller_l">
+            <table class="scroller_content">
             	<tr><td><img src="images/sug_jdl.png"/></td><td><img src="images/sug_fm.png"/></td><td><img src="images/sug_sh.png"/></td><td><img src="images/sug_os.png"/></td><td><img src="images/lifemarket.png"/></td></tr>
             	<tr><td><img src="images/sug_tesco.png"/></td><td><img src="images/sug_gome.png"/></td><td><img src="images/sug_kfc.png"/></td><td><img src="images/sug_bk.png"/></td><td><img src="images/sug_bbl.png" /></td></tr>
             </table>
+            </td><td id="scroller_r"></td></tr></table>
+            </div>
         </div>
     </div>
     <div class="main_right">

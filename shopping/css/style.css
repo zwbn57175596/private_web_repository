@@ -627,11 +627,21 @@ h1,h2,h3 {
 	margin-left: 14px;
 }
 
+.sugest_shop .scroller {
+	margin: 0px 15px;
+	width: 704px;
+	overflow: hidden;
+}
+
 .sugest_shop table {
 	margin: 0px auto;
 }
 
 .sugest_shop table td {
+	padding: 0px;	
+}
+
+.sugest_shop .scroller_content td {
 	padding: 0 10px 20px 10px;
 }
 

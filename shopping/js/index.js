@@ -14,6 +14,9 @@ $(function(){
 		e.stopPropagation();
 		$(".search_list").fadeIn(100);	
 	});
+	$(".search_list").on("mouseleave", function(e){
+		$(".search_list").fadeOut(100);
+	});
 	
 	$(document).on("click", function(e){
 		$(".search_list").fadeOut(100);
@@ -85,6 +88,20 @@ $(function(){
 		});
     });
 	
+	// scroller shops list
+	var scroller = $("#scroller_container");
+	var sc_l = $("#scroller_l");
+	$("#scroller_r").html(sc_l.html());
+	function doScroll(){
+			if (scroller.scrollLeft() >= sc_l.width()) {
+				scroller.scrollLeft(0);
+			} else {
+				scroller.scrollLeft(scroller.scrollLeft() + 1);
+			}
+	}
+	var myScroll=setInterval(doScroll,30);
+	scroller.on("mouseover", function(e){clearInterval(myScroll);});
+	scroller.on("mouseout", function(e){myScroll = setInterval(doScroll, 30);});
 });
 
 // newsmodule_content li initial
