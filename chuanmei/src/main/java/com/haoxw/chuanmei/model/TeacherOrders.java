@@ -40,12 +40,23 @@ public class TeacherOrders implements java.io.Serializable {
 	private String leaveWord;
 	// 备注
 	private String remark;
-	// 备注
+	// 课程名称
 	private String subject;
 	//设备分类id
 	private  int sbTypeId; 
 	//辅助显示用
 	private String name;
+	
+	// edit by zhaowei 2012-04-17
+	// 班级名称
+	private String claName;
+	// 班级人数
+	private int stuNum;
+	// 试验形式
+	private String expType;
+	// 作业长度
+	private int workTime;
+	
 	
 	
 	
@@ -74,7 +85,7 @@ public class TeacherOrders implements java.io.Serializable {
 				+ ", jieshuDate=" + jieshuDate + ", jieshuUserId="
 				+ jieshuUserId + ", leaveWord=" + leaveWord + ", remark="
 				+ remark + ", subject=" + subject + ", sbTypeId=" + sbTypeId
-				+ ", name=" + name + "]";
+				+ ", name=" + name + ", className=" + claName +", stuNum=" + stuNum +", expType=" + expType +", workTime=" + workTime +"天]";
 	}
 
 	/**
@@ -286,5 +297,37 @@ public class TeacherOrders implements java.io.Serializable {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
+
+  public String getClaName() {
+    return claName;
+  }
+
+  public void setClaName(String className) {
+    this.claName = className;
+  }
+
+  public int getStuNum() {
+    return stuNum;
+  }
+
+  public void setStuNum(int stuNum) {
+    this.stuNum = stuNum;
+  }
+
+  public String getExpType() {
+    return expType;
+  }
+
+  public void setExpType(String expType) {
+    this.expType = expType;
+  }
+
+  public int getWorkTime() {
+    return workTime;
+  }
+
+  public void setWorkTime(int workTime) {
+    this.workTime = workTime;
+  }
 
 }

@@ -43,11 +43,13 @@ body,form,p,ol,ul,li,p,h2,h3,h4,dl,dt {
 .table_border th {
 	background: #afeeee;
 	font-size: 12px;
+	padding: 2px;
 	border: 1px solid black;
 }
 
 .table_border td {
 	font-size: 12px;
+	padding: 2px;
 	border: 1px solid black;
 }
 

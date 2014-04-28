@@ -1,13 +1,17 @@
 package com.haoxw.chuanmei.controller2;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.codehaus.jackson.JsonGenerator;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -105,7 +109,7 @@ public class TeacherOrdersController2 {
 		modelMap.addAttribute("title", "中国传媒大学-老师借用");
 		modelMap.addAttribute("seo_keywords", "中国传媒大学-老师借用");
 		modelMap.addAttribute("seo_desc", "中国传媒大学-老师借用");
-		return "teacherorder2/step";
+		return "teacherorder2/in";
 	}
 
 	/**
@@ -117,28 +121,47 @@ public class TeacherOrdersController2 {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/in2")
-	public String in2(HttpServletRequest request, ModelMap modelMap)
+	public void in2(HttpServletRequest request, HttpServletResponse response,ModelMap modelMap)
 			throws Exception {
 		int sbtype = RequestUtils.getInt(request, "sbtype", 0);
 		CookiesUtil cu = CookiesUtil.getInstance();
 		String code = cu.getCookieValue(request);
 		if (StringUtils.isEmpty(code)) {
 			modelMap.addAttribute("info", "您还未登录");
-			return "tips";
+			return;
 		}
-		SHEBEITYPE = new TreeMap<String,String>();
-		List<ShebeiType> listtype = shebeiTypeDao.allShebeiType();
-		for(int i=0;i<listtype.size();i++){
-			SHEBEITYPE.put(listtype.get(i).getId()+"", listtype.get(i).getName());
-		}
+//		SHEBEITYPE = new TreeMap<String,String>();
+//		List<ShebeiType> listtype = shebeiTypeDao.allShebeiType();
+//		for(int i=0;i<listtype.size();i++){
+//			SHEBEITYPE.put(listtype.get(i).getId()+"", listtype.get(i).getName());
+//		}
+		String id = RequestUtils.getString(request, "id", null);
 		List<Shebei> listShebei = shebeiDao.allShebeiListByType(sbtype);
-		modelMap.addAttribute("listShebei", listShebei);
-		modelMap.addAttribute("type", SHEBEITYPE);
-		modelMap.addAttribute("sbtype", sbtype);
-		modelMap.addAttribute("title", "中国传媒大学-老师借用");
-		modelMap.addAttribute("seo_keywords", "中国传媒大学-老师借用");
-		modelMap.addAttribute("seo_desc", "中国传媒大学-老师借用");
-		return "teacherorder2/in";
+    List<TeacherOrdersItem> listTeacherOrdersItem = teacherOrdersItemDao
+        .allTeacherOrdersItemByOrderId(id);
+    for (int i = 0; i < listShebei.size(); i++) {
+      for (int j = 0; j < listTeacherOrdersItem.size(); j++) {
+        if (listShebei.get(i).getId() == listTeacherOrdersItem.get(j)
+            .getShebeiId()) {
+          listShebei.get(i).setCheck(1);
+          break;
+        }
+      }
+    }
+		response.setContentType("application/json");
+		try {
+		  ObjectMapper mapper = new ObjectMapper();
+		  mapper.writeValue(response.getWriter(), listShebei);
+		} catch (IOException e) {
+		  logger.error("", e);
+		}
+//		modelMap.addAttribute("listShebei", listShebei);
+//		modelMap.addAttribute("type", SHEBEITYPE);
+//		modelMap.addAttribute("sbtype", sbtype);
+//		modelMap.addAttribute("title", "中国传媒大学-老师借用");
+//		modelMap.addAttribute("seo_keywords", "中国传媒大学-老师借用");
+//		modelMap.addAttribute("seo_desc", "中国传媒大学-老师借用");
+		return ;
 	}
 	
 	/**
@@ -213,8 +236,15 @@ public class TeacherOrdersController2 {
 		String leaveWord = RequestUtils.getString(request, "leaveWord", null);
 		int sbtype = RequestUtils.getInt(request, "sbtype", 0);
 		String id = RequestUtils.getString(request, "id", null);
+		// extends edit by zhaowei
+		String className = RequestUtils.getString(request, "className", null);
+		int stuNum = RequestUtils.getInt(request, "stuNum", 0);
+		String expType = RequestUtils.getString(request, "expType", null);
+		int workTime = RequestUtils.getInt(request, "workTime", 1);
+		
 		String shebeis[] = request.getParameterValues("shebeis");
-		if (!ValidateUtil.validParam(sTime, eTime, studentIds, subject,leaveWord)
+		if (!ValidateUtil.validParam(sTime, eTime, studentIds, subject,leaveWord, className, 
+		    expType)
 				|| shebeis==null||shebeis.length == 0) {
 			modelMap.addAttribute("info", "最少选择一个设备并且时间,学号,标题,特殊说明均不能为空");
 			return "tips";
@@ -222,14 +252,18 @@ public class TeacherOrdersController2 {
 		// 新增
 		if (StringUtils.isEmpty(id)) {
 			TeacherOrders to = new TeacherOrders();
-			to.setsDate(DateUtil.str2Date(sTime, "yyyy-MM-dd HH:mm:ss"));
-			to.seteDate(DateUtil.str2Date(eTime, "yyyy-MM-dd HH:mm:ss"));
+			to.setsDate(DateUtil.str2Date(sTime, "yyyy-MM-dd"));
+			to.seteDate(DateUtil.str2Date(eTime, "yyyy-MM-dd"));
 			to.setUserId(code);
 			to.setLeaveWord(leaveWord);
 			to.setState(0);
 			to.setStudentIds(studentIds);
 			to.setSubject(subject);
 			to.setSbTypeId(sbtype);
+			to.setClaName(className);
+			to.setStuNum(stuNum);
+			to.setExpType(expType);
+			to.setWorkTime(workTime);
 			String uuid = teacherOrdersDao.saveTeacherOrders(to);
 			if (!StringUtils.isEmpty(uuid)) {
 				for (int i = 0; i < shebeis.length; i++) {
@@ -241,24 +275,28 @@ public class TeacherOrdersController2 {
 			}
 		} else {
 			TeacherOrders to = teacherOrdersDao.getTeacherOrdersById(id);
-			to.setsDate(DateUtil.str2Date(sTime, "yyyy-MM-dd HH:mm:ss"));
-			to.seteDate(DateUtil.str2Date(eTime, "yyyy-MM-dd HH:mm:ss"));
+			to.setsDate(DateUtil.str2Date(sTime, "yyyy-MM-dd"));
+			to.seteDate(DateUtil.str2Date(eTime, "yyyy-MM-dd"));
 			to.setUserId(code);
 			to.setState(0);
 			to.setLeaveWord(leaveWord);
 			to.setStudentIds(studentIds);
 			to.setSubject(subject);
 			to.setSbTypeId(sbtype);
+			to.setClaName(className);
+      to.setStuNum(stuNum);
+      to.setExpType(expType);
+      to.setWorkTime(workTime);
 			boolean b = teacherOrdersDao.updateTeacherOrders(to);
 			if (b) {
 				boolean b2 = teacherOrdersItemDao.delTeacherOrdersItemByOrderId(id);
 				if(b2)
-				for (int i = 0; i < shebeis.length; i++) {
-					TeacherOrdersItem ti = new TeacherOrdersItem();
-					ti.setOrderId(id);
-					ti.setShebeiId(Integer.parseInt(shebeis[i].toString()));
-					teacherOrdersItemDao.saveOrUpdateTeacherOrdersItem(ti);
-				}
+  				for (int i = 0; i < shebeis.length; i++) {
+  					TeacherOrdersItem ti = new TeacherOrdersItem();
+  					ti.setOrderId(id);
+  					ti.setShebeiId(Integer.parseInt(shebeis[i].toString()));
+  					teacherOrdersItemDao.saveOrUpdateTeacherOrdersItem(ti);
+  				}
 			}
 		}
 		SHEBEITYPE = new TreeMap<String,String>();

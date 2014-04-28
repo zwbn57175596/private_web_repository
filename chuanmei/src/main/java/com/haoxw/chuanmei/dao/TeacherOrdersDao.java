@@ -34,7 +34,10 @@ public class TeacherOrdersDao {
 	public String saveTeacherOrders(TeacherOrders teacherOrders)
 			throws DbException {
 		String result = null;
-		String addsql = " insert into teacher_orders(id,userId,studentIds,sDate,eDate,state,cDate,checkDate,checkUserId,jieshuDate,jieshuUserId,leaveWord,remark,subject,sbTypeId) values(?,?,?,?,?,0,now(),?,?,?,?,?,?,?,?) ";
+		String addsql = " insert into teacher_orders(id,userId,studentIds,sDate,eDate,"
+		    + "state,cDate,checkDate,checkUserId,jieshuDate,jieshuUserId,leaveWord,"
+		    + "remark,subject,sbTypeId, className, stuNum, expType, workTime) values"
+		    + "(?,?,?,?,?,0,now(),?,?,?,?,?,?,?,?,?,?,?,?) ";
 		List<Object> listParam = new ArrayList<Object>();
 		int rows = -1;
 		String uuid = Uuid.getUUID();
@@ -51,6 +54,10 @@ public class TeacherOrdersDao {
 		listParam.add(teacherOrders.getRemark());
 		listParam.add(teacherOrders.getSubject());
 		listParam.add(teacherOrders.getSbTypeId());
+		listParam.add(teacherOrders.getClaName());
+		listParam.add(teacherOrders.getStuNum());
+		listParam.add(teacherOrders.getExpType());
+		listParam.add(teacherOrders.getWorkTime());
 		rows = dbop.update(0, addsql, listParam);
 		if (rows > 0)
 			result = uuid;
@@ -68,7 +75,9 @@ public class TeacherOrdersDao {
 	public boolean updateTeacherOrders(TeacherOrders teacherOrders)
 			throws DbException {
 		boolean result = false;
-		String updatesql = "update teacher_orders set userId=?,studentIds=?,sDate=?,eDate = ?,state=?,checkDate=?,checkUserId=?,jieshuDate=?,jieshuUserId=?,leaveWord=?,remark=?,subject=?,sbTypeId=?  where id=?";
+		String updatesql = "update teacher_orders set userId=?,studentIds=?,sDate=?,eDate = ?,"
+		    + "state=?,checkDate=?,checkUserId=?,jieshuDate=?,jieshuUserId=?,leaveWord=?,"
+		    + "remark=?,subject=?,sbTypeId=?, className=?, stuNum=?, expType=?, workTime=? where id=?";
 		List<Object> listParam = new ArrayList<Object>();
 		int rows = -1;
 		listParam.add(teacherOrders.getUserId());
@@ -84,6 +93,10 @@ public class TeacherOrdersDao {
 		listParam.add(teacherOrders.getRemark());
 		listParam.add(teacherOrders.getSubject());
 		listParam.add(teacherOrders.getSbTypeId());
+		listParam.add(teacherOrders.getClaName());
+		listParam.add(teacherOrders.getStuNum());
+		listParam.add(teacherOrders.getExpType());
+		listParam.add(teacherOrders.getWorkTime());
 		listParam.add(teacherOrders.getId());
 		rows = dbop.update(0, updatesql, listParam);
 		if (rows > 0)
@@ -127,7 +140,11 @@ public class TeacherOrdersDao {
 							teacherOrders.setRemark(rs.getString(13));
 							teacherOrders.setSubject(rs.getString(14));
 							teacherOrders.setSbTypeId(rs.getInt(15));
-							teacherOrders.setName(rs.getString(16));
+							teacherOrders.setClaName(rs.getString(16));
+							teacherOrders.setStuNum(rs.getInt(17));
+							teacherOrders.setExpType(rs.getString(18));
+							teacherOrders.setWorkTime(rs.getInt(19));
+							teacherOrders.setName(rs.getString(20));
 							return teacherOrders;
 						}
 						return null;
@@ -195,7 +212,11 @@ public class TeacherOrdersDao {
 							teacherOrders.setRemark(rs.getString(13));
 							teacherOrders.setSubject(rs.getString(14));
 							teacherOrders.setSbTypeId(rs.getInt(15));
-							teacherOrders.setName(rs.getString(16));
+              teacherOrders.setClaName(rs.getString(16));
+              teacherOrders.setStuNum(rs.getInt(17));
+              teacherOrders.setExpType(rs.getString(18));
+              teacherOrders.setWorkTime(rs.getInt(19));
+              teacherOrders.setName(rs.getString(20));
 							return teacherOrders;
 						}
 						return null;
@@ -259,7 +280,11 @@ public class TeacherOrdersDao {
 							teacherOrders.setRemark(rs.getString(13));
 							teacherOrders.setSubject(rs.getString(14));
 							teacherOrders.setSbTypeId(rs.getInt(15));
-							teacherOrders.setName(rs.getString(16));
+              teacherOrders.setClaName(rs.getString(16));
+              teacherOrders.setStuNum(rs.getInt(17));
+              teacherOrders.setExpType(rs.getString(18));
+              teacherOrders.setWorkTime(rs.getInt(19));
+              teacherOrders.setName(rs.getString(20));
 							return teacherOrders;
 						}
 						return null;
@@ -304,7 +329,11 @@ public class TeacherOrdersDao {
 							teacherOrders.setRemark(rs.getString(13));
 							teacherOrders.setSubject(rs.getString(14));
 							teacherOrders.setSbTypeId(rs.getInt(15));
-							teacherOrders.setName(rs.getString(16));
+              teacherOrders.setClaName(rs.getString(16));
+              teacherOrders.setStuNum(rs.getInt(17));
+              teacherOrders.setExpType(rs.getString(18));
+              teacherOrders.setWorkTime(rs.getInt(19));
+              teacherOrders.setName(rs.getString(20));
 							return teacherOrders;
 						}
 						return null;

@@ -111,6 +111,7 @@ public class DbOp<T> {
             rowCount = statement.executeUpdate();
         } catch (SQLException e) {
         	log.error("",e);
+        	e.printStackTrace();
         } finally {
         	dbConn.closeConnection(statement, connection);
         }

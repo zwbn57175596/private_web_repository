@@ -223,8 +223,8 @@ public class TeacherOrdersController {
 		// 新增
 		if (StringUtils.isEmpty(id)) {
 			TeacherOrders to = new TeacherOrders();
-			to.setsDate(DateUtil.str2Date(sTime, "yyyy-MM-dd HH:mm:ss"));
-			to.seteDate(DateUtil.str2Date(eTime, "yyyy-MM-dd HH:mm:ss"));
+			to.setsDate(DateUtil.str2Date(sTime, "yyyy-MM-dd"));
+			to.seteDate(DateUtil.str2Date(eTime, "yyyy-MM-dd"));
 			to.setUserId(code);
 			to.setLeaveWord(leaveWord);
 			to.setState(0);
