@@ -30,11 +30,12 @@ q:before,q:after {	content:'';}
 abbr,acronym { border:0;}
 /* css reset from yahoo YUI  END*/
 
-/* è®¾ç½®é»˜è®¤å­—ä½“ */
+/* 设置默认字体  */
 body,
 button, input, select, textarea { /* for ie */
-    /*font: 12px/1 Tahoma, Helvetica, Arial, "å®‹ä½“", sans-serif;*/
-    font: 12px/1 Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif; /* ç”¨ ascii å­—ç¬¦è¡¨ç¤ºï¼Œä½¿å¾—åœ¨ä»»ä½•ç¼–ç �ä¸‹éƒ½æ— é—®é¢˜ */
+	/*font: 12px/1 Tahoma, Helvetica, Arial, "宋体", sans-serif;*/
+	font: 12px/1 Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif; /* 用 ascii 字符表示，使得在任何编码下都无问题 */
+
 }
 
 hr {
@@ -62,7 +63,7 @@ body {
 	height: 67px;
 	line-height: 62px;
 	overflow: hidden;
-	font-family: "é»‘ä½“";
+	font-family: "黑体";
 	font-size: x-large;
 	text-align: left;
 	margin-left: 52px;
@@ -587,4 +588,13 @@ tr.alt td {
 tr.over td {
 	background: #bcd4ec; 
 	cursor: pointer;
+}
+
+
+.list-page {
+	text-align: center;
+	font-size: 10px;
+	color: #666;
+	padding: 15px 0 20px 0;
+	clear: both;
 }

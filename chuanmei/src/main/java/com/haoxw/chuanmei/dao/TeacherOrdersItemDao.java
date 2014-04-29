@@ -105,7 +105,6 @@ public class TeacherOrdersItemDao {
 					@Override
 					public TeacherOrdersItem getResultObject(ResultSet rs)
 							throws SQLException, DbException {
-						// TODO Auto-generated method stub
 						if (rs != null) {
 							TeacherOrdersItem teacherOrdersItem = new TeacherOrdersItem();
 							teacherOrdersItem.setId(rs.getInt(1));

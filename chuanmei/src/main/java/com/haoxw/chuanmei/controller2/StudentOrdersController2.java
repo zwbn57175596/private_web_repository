@@ -1,6 +1,5 @@
 package com.haoxw.chuanmei.controller2;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -16,22 +15,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.haoxw.chuanmei.bean.Constant;
 import com.haoxw.chuanmei.dao.ShebeiDao;
+import com.haoxw.chuanmei.dao.ShebeiOrderDao;
 import com.haoxw.chuanmei.dao.ShebeiTypeDao;
 import com.haoxw.chuanmei.dao.StudentOrdersDao;
 import com.haoxw.chuanmei.dao.TeacherOrdersDao;
 import com.haoxw.chuanmei.dao.TeacherOrdersItemDao;
+import com.haoxw.chuanmei.model.ShebeiOrder;
 import com.haoxw.chuanmei.model.StudentOrders;
 import com.haoxw.chuanmei.model.TeacherOrders;
 import com.haoxw.chuanmei.model.TeacherOrdersItem;
 import com.haoxw.chuanmei.util.CookiesUtil;
 import com.haoxw.chuanmei.util.DateUtil;
+import com.haoxw.chuanmei.util.ParamUtils;
 import com.haoxw.chuanmei.util.RequestUtils;
-import com.haoxw.chuanmei.util.ValidateUtil;
 
 @Controller
 @RequestMapping("/studentOrders2")
 public class StudentOrdersController2 {
-	private static Logger logger = LoggerFactory
+	@SuppressWarnings("unused")
+  private static Logger logger = LoggerFactory
 			.getLogger(StudentOrdersController2.class);
 	// 一页记录数
 	private final static int limit = 10;
@@ -45,7 +47,10 @@ public class StudentOrdersController2 {
 	private ShebeiTypeDao shebeiTypeDao;
 	@Resource
 	private StudentOrdersDao studentOrdersDao;
-	private Map<String, String> SHEBEITYPE;
+	@Resource
+	private ShebeiOrderDao shebeiOrderDao;
+	@SuppressWarnings("unused")
+  private Map<String, String> SHEBEITYPE;
 
 	/**
 	 * 查找学生可借用订单列表
@@ -71,7 +76,7 @@ public class StudentOrdersController2 {
 		modelMap.addAttribute("seo_desc", "中国传媒大学-学生可借用订单列表");
 		modelMap.addAttribute("list", listTeacherOrders);
 		modelMap.addAttribute("teacherOrderState", Constant.TEACHERORDERSTATE);
-		return "studentorder/list";
+		return "studentorder2/list";
 	}
 
 	/**
@@ -105,7 +110,7 @@ public class StudentOrdersController2 {
 		modelMap.addAttribute("count", count);
 		modelMap.addAttribute("list", listStudentOrders);
 		modelMap.addAttribute("studentOrderState", Constant.STUDENTORDERSTATE);
-		return "studentorder/mylist";
+		return "studentorder2/mylist";
 	}
 
 	/**
@@ -129,6 +134,7 @@ public class StudentOrdersController2 {
 		String sid = RequestUtils.getString(request, "sid", null);
 		TeacherOrders teacherOrders = teacherOrdersDao.getTeacherOrdersById(id);
 		StudentOrders studentOrders = studentOrdersDao.getStudentOrdersById(sid);
+		
 //		List<Shebei> listShebeiCheck = new ArrayList<Shebei>();
 //		List<Shebei> listShebei = shebeiDao.allShebeiList();
 //		List<TeacherOrdersItem> listTeacherOrdersItem = teacherOrdersItemDao
@@ -144,6 +150,9 @@ public class StudentOrdersController2 {
 //			}
 //		}
 		List<TeacherOrdersItem> listTeacherOrdersItem = teacherOrdersItemDao.allTeacherOrdersItemByOrderId(id);
+		for (TeacherOrdersItem i : listTeacherOrdersItem) {
+      i.setShebeiOrderList(shebeiOrderDao.listShebeiOrderByShebeiId(i.getShebeiId()));
+    }
 		modelMap.addAttribute("teacherOrders", teacherOrders);
 		modelMap.addAttribute("studentOrders", studentOrders);
 		modelMap.addAttribute("listShebei", listTeacherOrdersItem);
@@ -151,7 +160,7 @@ public class StudentOrdersController2 {
 		modelMap.addAttribute("title", "中国传媒大学-学生借用");
 		modelMap.addAttribute("seo_keywords", "中国传媒大学-学生借用");
 		modelMap.addAttribute("seo_desc", "中国传媒大学-学生借用");
-		return "studentorder/in";
+		return "studentorder2/in";
 	}
 
 	/**
@@ -203,7 +212,7 @@ public class StudentOrdersController2 {
 		modelMap.addAttribute("title", "中国传媒大学-学生借用");
 		modelMap.addAttribute("seo_keywords", "中国传媒大学-学生借用");
 		modelMap.addAttribute("seo_desc", "中国传媒大学-学生借用");
-		return "studentorder/view";
+		return "studentorder2/view";
 	}
 
 	/**
@@ -226,42 +235,58 @@ public class StudentOrdersController2 {
 		String id = RequestUtils.getString(request, "id", null);
 		String sid = RequestUtils.getString(request, "sid", null);
 		String remark = RequestUtils.getString(request, "remark", null);
-		String sTime = RequestUtils.getString(request, "sTime", null);
-		String eTime = RequestUtils.getString(request, "eTime", null);
-		if (!ValidateUtil.validParam(sTime, eTime)) {
-			modelMap.addAttribute("info", "开始时间和结束时间不能为null");
-			return "tips";
-		}
+//		String sTime = RequestUtils.getString(request, "sTime", null);
+//		String eTime = RequestUtils.getString(request, "eTime", null);
 
-		Date s = DateUtil.str2Date(sTime, "yyyy-MM-dd HH:mm:ss");
-		Date e = DateUtil.str2Date(eTime, "yyyy-MM-dd HH:mm:ss");
+//		Date s = DateUtil.str2Date(sTime, "yyyy-MM-dd");
+//		Date e = DateUtil.str2Date(eTime, "yyyy-MM-dd");
+		String shebeis[] = request.getParameterValues("shebeis");
+		String sTimes[] = request.getParameterValues("sTime");
 
-		TeacherOrders to = teacherOrdersDao.getTeacherOrdersById(id);
-		if (s.after(to.getsDate()) && e.before(to.geteDate())) {
-			// 新增
-			if (!StringUtils.isEmpty(sid)) {
-				StudentOrders so = studentOrdersDao.getStudentOrdersById(sid);
-				so.setRemark(remark);
-				so.setsDate(s);
-				so.seteDate(e);
-				so.setState(0);
-				so.setUserId(code);
-				studentOrdersDao.updateStudentOrders(so);
-				modelMap.addAttribute("info", "修改申请已提交");
-			}else{
-				StudentOrders so = new StudentOrders();
-				so.setOrderId(id);
-				so.setRemark(remark);
-				so.setsDate(s);
-				so.seteDate(e);
-				so.setUserId(code);
-				studentOrdersDao.saveStudentOrders(so);
-				modelMap.addAttribute("info", "申请已提交");
-			}
-		} else {
-			modelMap.addAttribute("info", "开始时间和结束时间需要在老师借用时间之间");
-			return "tips";
+    if (null == sTimes || null == shebeis) {
+      modelMap.addAttribute("info", "请至少提交一个设备的预约");
+      return "tips";
+    }
+    
+		// TeacherOrders to = teacherOrdersDao.getTeacherOrdersById(id);
+		
+		
+//		if (s.compareTo(to.getsDate()) >= 0 && e.compareTo(to.geteDate()) <= 0) {
+		// 修改
+		if (!StringUtils.isEmpty(sid)) {
+			StudentOrders so = studentOrdersDao.getStudentOrdersById(sid);
+			so.setRemark(remark);
+//				so.setsDate(s);
+//				so.seteDate(e);
+			so.setState(0);
+			so.setUserId(code);
+			studentOrdersDao.updateStudentOrders(so);
+			modelMap.addAttribute("info", "修改申请已提交");
+		} else { // 新增
+			StudentOrders so = new StudentOrders();
+			so.setOrderId(id);
+			so.setRemark(remark);
+//				so.setsDate(s);
+//				so.seteDate(e);
+			so.setUserId(code);
+			sid = studentOrdersDao.saveStudentOrders(so);
+			modelMap.addAttribute("info", "申请已提交");
 		}
+//		} else {
+//			modelMap.addAttribute("info", "开始时间和结束时间需要在老师借用时间之间");
+//			return "tips";
+//		}
+		// 新增sheibeiorders
+		ShebeiOrder o = null;
+		for (int i = 0; i < shebeis.length; i++) {
+      o = new ShebeiOrder();
+      o.setShebeiId(ParamUtils.getInt(shebeis[i], 0));
+      o.setStudentOrdersId(sid);
+      o.setsDate(DateUtil.str2Date(sTimes[i], "yyyy-MM-dd"));
+      // o.seteDate(DateUtil.str2Date(eTimes[i], "yyyy-MM-dd"));
+      shebeiOrderDao.saveShebeiOrder(o);
+    }
+		// TODO 修改sheibeiorders
 		return mylist(request, modelMap);
 	}
 

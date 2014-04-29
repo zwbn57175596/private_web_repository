@@ -180,6 +180,7 @@ public class DbOp<T> {
 			}
 		} catch (SQLException e) {
 			log.error("", e);
+			e.printStackTrace();
 		} finally {
 			// 关闭数据库
 			dbConn.closeConnection(resultSet,statement, connection);

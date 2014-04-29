@@ -1,6 +1,7 @@
 package com.haoxw.chuanmei.model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 老师订单项
@@ -19,6 +20,8 @@ public class TeacherOrdersItem implements java.io.Serializable{
 	//辅助显示用
 	private String name;
 	private String code;
+	private List<ShebeiOrder> shebeiOrderList;
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -99,5 +102,11 @@ public class TeacherOrdersItem implements java.io.Serializable{
 	public void setCode(String code) {
 		this.code = code;
 	}
+  public List<ShebeiOrder> getShebeiOrderList() {
+    return shebeiOrderList;
+  }
+  public void setShebeiOrderList(List<ShebeiOrder> shebeiOrderList) {
+    this.shebeiOrderList = shebeiOrderList;
+  }
 	
 }
