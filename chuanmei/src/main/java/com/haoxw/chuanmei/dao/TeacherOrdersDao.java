@@ -296,7 +296,7 @@ public class TeacherOrdersDao {
 	
 	
 	/**
-	 * 查找学生可借用订单列表
+	 * 查找学生可借用订单列表（此处应排除已提交的订单）
 	 * @param userId
 	 * @return
 	 * @throws DbException
@@ -304,7 +304,10 @@ public class TeacherOrdersDao {
 	public List<TeacherOrders> findStudentOrdersList(String studentId) throws DbException {
 		List<Object> listParam = new ArrayList<Object>();
 		String sql = "select t.*,u.name from teacher_orders t,user u where t.state=1 "
-		    + " and find_in_set(?, t.studentIds) and t.userId= u.code  order by t.cDate desc ";
+		    + " and find_in_set(?, t.studentIds) and t.userId= u.code "
+		    + " and t.id not in (select s.orderId from student_orders s where s.userId = ?) "
+		    + " order by t.cDate desc ";
+		listParam.add(studentId);
 		listParam.add(studentId);
 		List<TeacherOrders> listTeacherOrders = null;
 		listTeacherOrders = dbop.findListParam(0l, sql, listParam,
