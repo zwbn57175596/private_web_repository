@@ -16,12 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.haoxw.chuanmei.bean.Constant;
 import com.haoxw.chuanmei.dao.ShebeiDao;
+import com.haoxw.chuanmei.dao.ShebeiOrderDao;
 import com.haoxw.chuanmei.dao.ShebeiTypeDao;
 import com.haoxw.chuanmei.dao.StudentOrdersDao;
 import com.haoxw.chuanmei.dao.TeacherOrdersDao;
 import com.haoxw.chuanmei.dao.TeacherOrdersItemDao;
 import com.haoxw.chuanmei.dao.TypeUserDao;
 import com.haoxw.chuanmei.dao.UserRoleDao;
+import com.haoxw.chuanmei.model.ShebeiOrder;
 import com.haoxw.chuanmei.model.StudentOrders;
 import com.haoxw.chuanmei.model.TeacherOrders;
 import com.haoxw.chuanmei.model.TeacherOrdersItem;
@@ -50,6 +52,8 @@ public class StudentOrdersCheckController2 {
 	private ShebeiTypeDao shebeiTypeDao;
 	@Resource
 	private TypeUserDao typeUserDao;
+	@Resource
+	private ShebeiOrderDao shebeiOrderDao;
 	@SuppressWarnings("unused")
   private Map<String, String> SHEBEITYPE;
 
@@ -135,9 +139,10 @@ public class StudentOrdersCheckController2 {
 //			SHEBEITYPE.put(listtype.get(i).getId() + "", listtype.get(i)
 //					.getName());
 //		}
+		List<ShebeiOrder> shebeiOrderList = shebeiOrderDao.listShebeiOrderByStudentOrdersId(studentOrders.getId());
 		modelMap.addAttribute("teacherOrders", teacherOrders);
 		modelMap.addAttribute("studentOrders", studentOrders);
-		modelMap.addAttribute("listShebei", listTeacherOrdersItem);
+		modelMap.addAttribute("listShebei", shebeiOrderList);
 		modelMap.addAttribute("title", "中国传媒大学-审核老师借用详情页");
 		modelMap.addAttribute("seo_keywords", "中国传媒大学-审核老师借用详情页");
 		modelMap.addAttribute("seo_desc", "中国传媒大学-审核老师借用详情页");

@@ -35,22 +35,25 @@
 						<tr>
 							<td colspan="4"><b>课程名称：</b>${teacherOrders.subject}</td>
 						</tr>
-						<c:forEach items="${listShebei}" var="row">
+						<c:forEach items="${listShebei}" var="r">
 							<tr>
-								<td align="center">${row.code}</td>
-								<td colspan="2" align="center">${row.name}</td>
-								<td align="center"><input type="checkbox" checked="checked"
-									name="shebeis" onclick="return false;" value="${row.id}" /></td>
+								<td align="center" width="25%">${r.shebei.code}</td>
+								<td colspan="2" align="center">${r.shebei.name}</td>
+								<td align="center"><input type="checkbox" checked="checked" name="shebeis" onclick="return false;"
+									value="${r.shebeiId}" /></td>
 							</tr>
-						</c:forEach>
-						<tr>
-							<td><b>开始时间：</b></td>
-							<td><fmt:formatDate value="${teacherOrders.sDate}"
-									pattern="yyyy-MM-dd HH:mm:ss" /></td>
-							<td><b>结束时间：</b></td>
-							<td><fmt:formatDate value="${teacherOrders.eDate}"
-									pattern="yyyy-MM-dd HH:mm:ss" /></td>
-						</tr>
+							<tr>
+								<td><b>预约时间：</b></td>
+								<td colspan="3"><fmt:formatDate value="${r.sDate}" pattern="yyyy-MM-dd" /></td>
+								<%-- <td><b>结束时间：</b></td>
+								<td><input name="eTime" class="Wdate" readonly="readonly"
+									style="width: 160px" type="text"
+									value="${studentOrders.eDate}"
+									onclick="WdatePicker({dateFmt:'yyyy-MM-dd', 
+									minDate:'<fmt:formatDate value="${teacherOrders.sDate}" pattern="yyyy-MM-dd" />', 
+									maxDate:'<fmt:formatDate value="${teacherOrders.eDate}" pattern="yyyy-MM-dd" />'})" /></td> --%>
+							</tr>
+						</c:forEach>					
 					</tbody>
 				</table>
 				<br />
@@ -73,7 +76,7 @@
 											</c:forEach>
 									</select></td>
 								</tr>
-								<tr>
+								<%-- <tr>
 									<td align="center"><b>开始时间：</b></td>
 									<td align="center"><fmt:formatDate
 											value="${studentOrders.sDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
@@ -82,7 +85,7 @@
 									<td align="center"><b>结束时间：</b></td>
 									<td align="center"><fmt:formatDate
 											value="${studentOrders.eDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-								</tr>
+								</tr> --%>
 								<tr>
 									<td align="center"><b>备注：</b></td>
 									<td align="center"><textarea name="remark" rows="3"
