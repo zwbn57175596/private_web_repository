@@ -13,8 +13,6 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
 <script charset="utf-8" src="/resources/js/jquery-1.5.min.js"></script>
 <script charset="utf-8" src="/resources/js/tr.js"></script>
-<script language="javascript" type="text/javascript"
-	src="/resources/My97DatePicker/WdatePicker.js"></script>
 <script type="text/javascript">
 	function goStudentPage(page) {
 		location.href = "/studentOrders2/mylist?pageNo=" + page;

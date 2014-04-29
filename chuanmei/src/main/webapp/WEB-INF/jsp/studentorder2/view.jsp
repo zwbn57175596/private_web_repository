@@ -34,7 +34,7 @@
 							<td colspan="4"><b>申请老师：</b>${teacherOrders.userId}_${teacherOrders.name}</td>
 						</tr>
 						<tr>
-							<td colspan="4"><b>标题：</b>${teacherOrders.subject}</td>
+							<td colspan="4"><b>课程名称：</b>${teacherOrders.subject}</td>
 						</tr>
 						<tr>
 							<td><b>开始时间：</b></td>

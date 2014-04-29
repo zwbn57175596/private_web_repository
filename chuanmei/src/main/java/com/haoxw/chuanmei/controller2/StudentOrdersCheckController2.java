@@ -26,7 +26,6 @@ import com.haoxw.chuanmei.dao.UserRoleDao;
 import com.haoxw.chuanmei.model.ShebeiOrder;
 import com.haoxw.chuanmei.model.StudentOrders;
 import com.haoxw.chuanmei.model.TeacherOrders;
-import com.haoxw.chuanmei.model.TeacherOrdersItem;
 import com.haoxw.chuanmei.util.CookiesUtil;
 import com.haoxw.chuanmei.util.RequestUtils;
 
@@ -121,8 +120,8 @@ public class StudentOrdersCheckController2 {
 				.getStudentOrdersById(myid);
 //		List<Shebei> listShebeiCheck = new ArrayList<Shebei>();
 //		List<Shebei> listShebei = shebeiDao.allShebeiList();
-		List<TeacherOrdersItem> listTeacherOrdersItem = teacherOrdersItemDao
-				.allTeacherOrdersItemByOrderId(id);
+//		List<TeacherOrdersItem> listTeacherOrdersItem = teacherOrdersItemDao
+//				.allTeacherOrdersItemByOrderId(id);
 //		for (int i = 0; i < listShebei.size(); i++) {
 //			for (int j = 0; j < listTeacherOrdersItem.size(); j++) {
 //				if (listShebei.get(i).getId() == listTeacherOrdersItem.get(j)

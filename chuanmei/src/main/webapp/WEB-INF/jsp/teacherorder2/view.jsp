@@ -12,9 +12,7 @@
 <meta name="description" content="${seo_desc}" />
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
 <script charset="utf-8" src="/resources/js/jquery-1.5.min.js"></script>
-<script charset="utf-8" src="/resources/js/tr.js"></script>
-<script language="javascript" type="text/javascript"
-	src="/resources/My97DatePicker/WdatePicker.js"></script>
+<script charset="utf-8" src="/resources/js/tr.js"></script>>
 </head>
 <body>
 	<div class="manage-container">
@@ -34,7 +32,7 @@
 								<td align="center">${row.code}</td>
 								<td colspan="2" align="center">${row.name}</td>
 								<td align="center">
-									<input type="checkbox" checked="checked" name="shebeis" value="${row.id}" />
+									<input type="checkbox" checked="checked" name="shebeis" disabled="disabled" value="${row.id}" />
 								</td>
 							</tr>
 						</c:forEach>
@@ -121,36 +119,5 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-	function loadSbtype() {
-		$.ajax({
-			 url: "/teacherOrders2/in2",
-			 data: {sbtype: 2},
-			 dataType: "json",
-			 success: function(list){
-				 var html = "";
-				 if (typeof(list) == "object") {
-						var len = list.length;
-						for (var i = 0; i < len; i++ ) {
-							var r = list[i];
-							html = "<tr><td align=\"center\">" + r.code + "</td><td align=\"center\">" + r.name + "</td>";
-							if (r.check > 0) {
-								html += "<td align=\"center\"><input type=\"checkbox\" checked name=\"shebeis\" value=" + r.id + " /></td></tr>";
-							} else {
-								html += "<td align=\"center\"><input type=\"checkbox\" name=\"shebeis\" value=" + r.id + " /></td></tr>";
-							} /// success end if check > 0
-							$("#equi_list tbody").append(html);
-						} // success end for 
-				 } // success end if typeof
-			 }
-		 });
-	}
-		
-	$(document).ready(function(){
-		$("#sbtype").bind("change", function(){
-			loadSbtype();
-		});
-	});
-	</script>
 </body>
 </html>

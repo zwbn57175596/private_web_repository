@@ -31,7 +31,8 @@ import com.haoxw.chuanmei.util.RequestUtils;
 @Controller
 @RequestMapping("/teacherOrdersCheck2")
 public class TeacherOrdersCheckController2 {
-	private static Logger logger = LoggerFactory
+	@SuppressWarnings("unused")
+  private static Logger logger = LoggerFactory
 			.getLogger(TeacherOrdersCheckController2.class);
 	// 一页记录数
 	private final static int limit = 10;
@@ -47,7 +48,8 @@ public class TeacherOrdersCheckController2 {
 	private UserRoleDao userRoleDao;
 	@Resource
 	private TypeUserDao typeUserDao;
-	private Map<String, String> SHEBEITYPE;
+	@SuppressWarnings("unused")
+  private Map<String, String> SHEBEITYPE;
 	/**
 	 * 列表
 	 * 
@@ -85,7 +87,7 @@ public class TeacherOrdersCheckController2 {
 		modelMap.addAttribute("count", count);
 		modelMap.addAttribute("list", listTeacherOrders);
 		modelMap.addAttribute("teacherOrderState", Constant.TEACHERORDERSTATE);
-		return "check/teacherList";
+		return "check2/teacherList";
 	}
 
 	/**
@@ -132,7 +134,7 @@ public class TeacherOrdersCheckController2 {
 		modelMap.addAttribute("seo_keywords", "中国传媒大学-审核老师借用详情页");
 		modelMap.addAttribute("seo_desc", "中国传媒大学-审核老师借用详情页");
 		modelMap.addAttribute("teacherOrderState", Constant.TEACHERORDERSTATE);
-		return "check/checkTeacher";
+		return "check2/checkTeacher";
 	}
 
 	/**
@@ -235,6 +237,6 @@ public class TeacherOrdersCheckController2 {
 		modelMap.addAttribute("title", "中国传媒大学-查看借用信息页");
 		modelMap.addAttribute("seo_keywords", "中国传媒大学-查看借用信息页");
 		modelMap.addAttribute("seo_desc", "中国传媒大学-查看借用信息页");
-		return "teacherorder/view";
+		return "teacherorder2/view";
 	}
 }
