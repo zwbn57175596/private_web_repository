@@ -35,8 +35,8 @@ function goStudentPage(page) {
 					<tbody>
 						<tr>
 							<th>标题</th>
-							<th>开始时间</th>
-							<th>结束时间</th>
+							<!-- <th>开始时间</th>
+							<th>结束时间</th> -->
 							<th>状态</th>
 							<th>操作</th>
 						</tr>
@@ -48,11 +48,11 @@ function goStudentPage(page) {
 						<c:forEach items="${list}" var="row">
 							<tr <c:if test="${row.isRed==1}">bgcolor="red"</c:if>>
 								<td align="left">${row.title}</td>
-								<td align="center"><fmt:formatDate value="${row.sDate}"
+								<%-- <td align="center"><fmt:formatDate value="${row.sDate}"
 										pattern="yyyy-MM-dd HH:mm:ss" /></td>
 								<td align="center"><fmt:formatDate value="${row.eDate}"
-										pattern="yyyy-MM-dd HH:mm:ss" /></td>
-								<td align="center"><select>
+										pattern="yyyy-MM-dd HH:mm:ss" /></td> --%>
+								<td align="center"><select disabled="disabled">
 										<c:forEach items="${studentOrderState}" var="entry">
 											<option
 												<c:if test="${entry.key==row.state}"> selected </c:if>
@@ -60,9 +60,9 @@ function goStudentPage(page) {
 										</c:forEach>
 								</select></td>
 								<td align="center"><a
-									href="/studentOrders/view?id=${row.orderId}&myid=${row.id}">查看</a>
+									href="/studentOrders2/view?id=${row.orderId}&myid=${row.id}">查看</a>
 									&nbsp;<c:if test="${row.state<1}">
-										<a href="/studentOrders/in?id=${row.orderId}&sid=${row.id}">修改</a>
+										<a href="/studentOrders2/in?id=${row.orderId}&sid=${row.id}">修改</a>
 									</c:if></td>
 							</tr>
 						</c:forEach>

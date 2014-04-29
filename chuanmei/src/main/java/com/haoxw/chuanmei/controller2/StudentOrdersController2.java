@@ -134,7 +134,9 @@ public class StudentOrdersController2 {
 		String sid = RequestUtils.getString(request, "sid", null);
 		TeacherOrders teacherOrders = teacherOrdersDao.getTeacherOrdersById(id);
 		StudentOrders studentOrders = studentOrdersDao.getStudentOrdersById(sid);
-		
+		if (null != studentOrders) {
+		  studentOrders.setShebeiOrders(shebeiOrderDao.listShebeiOrderByStudentOrdersId(studentOrders.getId()));
+		}
 //		List<Shebei> listShebeiCheck = new ArrayList<Shebei>();
 //		List<Shebei> listShebei = shebeiDao.allShebeiList();
 //		List<TeacherOrdersItem> listTeacherOrdersItem = teacherOrdersItemDao
@@ -153,6 +155,7 @@ public class StudentOrdersController2 {
 		for (TeacherOrdersItem i : listTeacherOrdersItem) {
       i.setShebeiOrderList(shebeiOrderDao.listShebeiOrderByShebeiId(i.getShebeiId()));
     }
+		
 		modelMap.addAttribute("teacherOrders", teacherOrders);
 		modelMap.addAttribute("studentOrders", studentOrders);
 		modelMap.addAttribute("listShebei", listTeacherOrdersItem);
@@ -203,11 +206,12 @@ public class StudentOrdersController2 {
 //			SHEBEITYPE.put(listtype.get(i).getId() + "", listtype.get(i)
 //					.getName());
 //		}
-		List<TeacherOrdersItem> listTeacherOrdersItem = teacherOrdersItemDao
-				.allTeacherOrdersItemByOrderId(id);
+//		List<TeacherOrdersItem> listTeacherOrdersItem = teacherOrdersItemDao
+//				.allTeacherOrdersItemByOrderId(id);
+		List<ShebeiOrder> shebeiOrderList = shebeiOrderDao.listShebeiOrderByStudentOrdersId(studentOrders.getId());
 		modelMap.addAttribute("teacherOrders", teacherOrders);
 		modelMap.addAttribute("studentOrders", studentOrders);
-		modelMap.addAttribute("listShebei", listTeacherOrdersItem);
+		modelMap.addAttribute("listShebei", shebeiOrderList);
 		modelMap.addAttribute("studentOrderState", Constant.STUDENTORDERSTATE);
 		modelMap.addAttribute("title", "中国传媒大学-学生借用");
 		modelMap.addAttribute("seo_keywords", "中国传媒大学-学生借用");

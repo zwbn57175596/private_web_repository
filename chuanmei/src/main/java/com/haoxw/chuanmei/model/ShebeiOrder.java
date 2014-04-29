@@ -26,6 +26,7 @@ public class ShebeiOrder implements Serializable {
   //辅助显示用
   protected String studentName;
   
+  protected Shebei shebei;
   
   public ShebeiOrder() {
     super();
@@ -87,5 +88,11 @@ public class ShebeiOrder implements Serializable {
     this.studentName = studentName;
   }
 
-  
+  public Shebei getShebei() {
+    return shebei;
+  }
+
+  public void setShebei(Shebei shebei) {
+    this.shebei = shebei;
+  }
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.haoxw.chuanmei.bean.DbException;
 import com.haoxw.chuanmei.dao.base.DbOp;
 import com.haoxw.chuanmei.dao.base.ResultObjectCall;
+import com.haoxw.chuanmei.model.Shebei;
 import com.haoxw.chuanmei.model.ShebeiOrder;
 
 /**
@@ -27,7 +28,7 @@ public class ShebeiOrderDao {
   
   /**
    * 通过设备ID取设备被的预约记录（只计算已审批通过的和已领取的，取大于当天的数据）
-   * @param id
+   * @param id shebeiId 设备ID
    * @return List<ShebeiOrder>
    * @throws DbException
    */
@@ -56,6 +57,47 @@ public class ShebeiOrderDao {
           o.seteDate(rs.getTimestamp("eDate"));
           o.setStudentName(rs.getString("name"));
           // 取出预约的学生姓名，方便显示
+          return o;
+        }
+        return null;
+      }
+    });
+    if (null != r && r.size() > 0) {
+      return r;
+    }
+    return null;
+  }
+  
+  /**
+   * 通过学生订单列表ID取其借用列表
+   * @param id studentOrdersId
+   * @return List<ShebeiOrder>
+   * @throws DbException
+   */
+  public List<ShebeiOrder> listShebeiOrderByStudentOrdersId(String id) throws DbException {
+    List<Object> lp = new ArrayList<Object>();
+    String sql = " select t.*, s.* from shebei_order t left join shebei s on t.shebeiId = s.id where t.studentOrdersId = ? ";
+    lp.add(id);
+
+    List<ShebeiOrder> r = null;
+    r = dbop.findListParam(0l, sql, lp, new ResultObjectCall<ShebeiOrder>() {
+      @Override
+      public ShebeiOrder getResultObject(ResultSet rs) throws SQLException, DbException {
+        if (rs != null) {
+          ShebeiOrder o = new ShebeiOrder();
+          o.setId(rs.getInt(1));
+          o.setShebeiId(rs.getInt(2));
+          o.setStudentId(rs.getString(4));
+          o.setStudentOrdersId(rs.getString(3));
+          o.setsDate(rs.getTimestamp(5));
+          o.seteDate(rs.getTimestamp(6));
+          
+          Shebei s = new Shebei();
+          // s.setId(rs.getInt(7));
+          s.setName(rs.getString(8));
+          s.setCode(rs.getString(14));
+          
+          o.setShebei(s);
           return o;
         }
         return null;

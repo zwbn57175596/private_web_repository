@@ -72,8 +72,7 @@
 								<tr>
 									<td><b>预约时间：</b></td>
 									<td colspan="3"> <input name="sTime" class="Wdate" readonly="readonly"
-										style="width: 160px" type="text" value="${studentOrders.sDate}"
-										onclick="WdatePicker({dateFmt:'yyyy-MM-dd'
+										style="width: 160px" type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'
 										<c:choose>
 										<c:when test="${now < teacherOrders.sDate}">
 										, minDate:'<fmt:formatDate value="${teacherOrders.sDate}" pattern="yyyy-MM-dd" />'
@@ -92,9 +91,17 @@
 										</c:otherwise>
 										</c:choose>
 										<c:forEach items="${row.shebeiOrderList}" var="s">
+										<c:if test="${s.studentOrdersId != studentOrders.id}">
 										'<fmt:formatDate value="${s.sDate}" pattern="yyyy-MM-dd" />',
+										</c:if>
 										</c:forEach>
-										]})" /></td>
+										]})" 
+										<c:forEach items="${studentOrders.shebeiOrders}" var="s">
+										<c:if test="${s.shebeiId == row.shebeiId}">
+										value="<fmt:formatDate value="${s.sDate}" pattern="yyyy-MM-dd" />"
+										</c:if>
+										</c:forEach>
+										 /></td>
 									<%-- <td><b>结束时间：</b></td>
 									<td><input name="eTime" class="Wdate" readonly="readonly"
 										style="width: 160px" type="text"
