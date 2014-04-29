@@ -35,6 +35,7 @@ public class StudentOrders implements java.io.Serializable{
 	private String remark;
 	private String name;
 	private String title;
+	private TeacherOrders teacherOrders;
 	
 	private List<ShebeiOrder> shebeiOrders;
 	
@@ -198,6 +199,12 @@ public class StudentOrders implements java.io.Serializable{
   }
   public void setShebeiOrders(List<ShebeiOrder> shebeiOrders) {
     this.shebeiOrders = shebeiOrders;
+  }
+  public TeacherOrders getTeacherOrders() {
+    return teacherOrders;
+  }
+  public void setTeacherOrders(TeacherOrders teacherOrders) {
+    this.teacherOrders = teacherOrders;
   }
 	
 }

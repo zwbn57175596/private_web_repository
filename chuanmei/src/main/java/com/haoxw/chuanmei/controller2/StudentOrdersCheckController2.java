@@ -31,7 +31,8 @@ import com.haoxw.chuanmei.util.RequestUtils;
 @Controller
 @RequestMapping("/studentOrdersCheck2")
 public class StudentOrdersCheckController2 {
-	private static Logger logger = LoggerFactory
+	@SuppressWarnings("unused")
+  private static Logger logger = LoggerFactory
 			.getLogger(StudentOrdersCheckController2.class);
 	// 一页记录数
 	private final static int limit = 10;
@@ -49,7 +50,8 @@ public class StudentOrdersCheckController2 {
 	private ShebeiTypeDao shebeiTypeDao;
 	@Resource
 	private TypeUserDao typeUserDao;
-	private Map<String, String> SHEBEITYPE;
+	@SuppressWarnings("unused")
+  private Map<String, String> SHEBEITYPE;
 
 	/**
 	 * 待审核学生订单列表
@@ -88,7 +90,7 @@ public class StudentOrdersCheckController2 {
 		modelMap.addAttribute("count", count);
 		modelMap.addAttribute("list", listStudentOrders);
 		modelMap.addAttribute("studentOrderState", Constant.STUDENTORDERSTATE);
-		return "check/studentList";
+		return "check2/studentList";
 	}
 
 	/**
@@ -140,7 +142,7 @@ public class StudentOrdersCheckController2 {
 		modelMap.addAttribute("seo_keywords", "中国传媒大学-审核老师借用详情页");
 		modelMap.addAttribute("seo_desc", "中国传媒大学-审核老师借用详情页");
 		modelMap.addAttribute("studentOrderState", Constant.STUDENTORDERSTATE);
-		return "check/checkStudent";
+		return "check2/checkStudent";
 	}
 
 	/**

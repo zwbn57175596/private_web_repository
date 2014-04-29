@@ -12,6 +12,7 @@ import com.haoxw.chuanmei.bean.DbException;
 import com.haoxw.chuanmei.dao.base.DbOp;
 import com.haoxw.chuanmei.dao.base.ResultObjectCall;
 import com.haoxw.chuanmei.model.StudentOrders;
+import com.haoxw.chuanmei.model.TeacherOrders;
 import com.haoxw.chuanmei.util.DateUtil;
 import com.haoxw.chuanmei.util.Uuid;
 
@@ -324,7 +325,9 @@ public class StudentOrdersDao {
 			throws DbException {
 		List<Object> listParam = new ArrayList<Object>();
 		String sql = null;
-		sql = "select s.*,u.name,t.subject from student_orders s,user u,teacher_orders t where t.sbTypeId=? and s.userId=u.code and s.orderId=t.id   order by s.cDate desc limit ?,? ";
+		sql = " select s.*,u.name,t.subject,t.sDate,t.eDate from student_orders s,user u,teacher_orders t "
+		    + " where t.sbTypeId=? and s.userId=u.code and s.orderId=t.id "
+		    + " order by s.cDate desc limit ?,? ";
 		listParam.add(sbTypeId);
 		listParam.add(offset);
 		listParam.add(limit);
@@ -350,7 +353,12 @@ public class StudentOrdersDao {
 							studentOrders.seteDate(rs.getTimestamp(11));
 							studentOrders.setIsRed(rs.getInt(12));
 							studentOrders.setName(rs.getString(13));
-							studentOrders.setTitle(rs.getString(14));
+							// studentOrders.setTitle(rs.getString(14));
+							TeacherOrders t = new TeacherOrders();
+							t.setSubject(rs.getString(14));
+							t.setsDate(rs.getTimestamp(15));
+							t.seteDate(rs.getTimestamp(16));
+							studentOrders.setTeacherOrders(t);
 							return studentOrders;
 						}
 						return null;
