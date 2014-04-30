@@ -296,7 +296,7 @@ public class TeacherOrdersDao {
 	
 	
 	/**
-	 * 查找学生可借用订单列表（此处应排除已提交的订单）
+	 * 查找学生可借用订单列表
 	 * @param userId
 	 * @return
 	 * @throws DbException
@@ -305,10 +305,11 @@ public class TeacherOrdersDao {
 		List<Object> listParam = new ArrayList<Object>();
 		String sql = "select t.*,u.name from teacher_orders t,user u where t.state=1 "
 		    + " and find_in_set(?, t.studentIds) and t.userId= u.code "
-		    + " and t.id not in (select s.orderId from student_orders s where s.userId = ?) "
+		    // 目前一次仅能约一天的，所以已提交的用也不能受到限制。否则就只能约一天的了
+		    // + " and t.id not in (select s.orderId from student_orders s where s.userId = ?) "
 		    + " order by t.cDate desc ";
 		listParam.add(studentId);
-		listParam.add(studentId);
+		// listParam.add(studentId);
 		List<TeacherOrders> listTeacherOrders = null;
 		listTeacherOrders = dbop.findListParam(0l, sql, listParam,
 				new ResultObjectCall<TeacherOrders>() {
