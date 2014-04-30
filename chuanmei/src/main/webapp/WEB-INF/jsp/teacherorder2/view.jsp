@@ -116,6 +116,25 @@
 						</tr>
 					</tbody>
 				</table>
+				<table id="grouptable" class="table_border" width="60%">
+						<thead>
+							<tr>
+								<th width="18%">组名</th>
+								<th width="18%">组长（1人）</th>
+								<th width="64%">组员（10人以内，请以,分隔组员学号）</th>
+							</tr>
+						</thead>
+						<tbody>
+						<c:forEach items="${groups}" var="gr">
+							<tr>
+								<td><input type="text" name="group_names" readonly="readonly" value="${gr.name}"/></td>
+								<td><input type="text" name="group_leaders" readonly="readonly" value="${gr.leader}"/></td> 
+								<td><input type="text" name="group_members" readonly="readonly" size="60" value="${gr.members}"/>
+								</td>
+							</tr>
+						</c:forEach>						
+						</tbody>
+					</table>
 			</div>
 		</div>
 	</div>

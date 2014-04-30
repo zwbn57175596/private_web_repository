@@ -383,6 +383,12 @@ public class TeacherOrdersController2 {
 		}
 		List<TeacherOrdersItem> listTeacherOrdersItem = teacherOrdersItemDao
 				.allTeacherOrdersItemByOrderId(id);
+		
+	 // 分组信息
+    List<StudentGroup> group = studentGroupDao.getStudentGroupsByTeacherOrdersId(id);
+    
+    modelMap.addAttribute("groups", group);
+    
 		modelMap.addAttribute("teacherOrders", teacherOrders);
 		modelMap.addAttribute("listShebei", listTeacherOrdersItem);
 		modelMap.addAttribute("title", "中国传媒大学-查看借用信息页");
