@@ -56,7 +56,8 @@ public class TeacherOrders implements java.io.Serializable {
 	private String expType;
 	// 作业长度
 	private int workTime;
-	
+	// 是否分组 0 否 1 是
+	private int haveGroup;
 	
 	
 	
@@ -328,6 +329,14 @@ public class TeacherOrders implements java.io.Serializable {
 
   public void setWorkTime(int workTime) {
     this.workTime = workTime;
+  }
+
+  public int getHaveGroup() {
+    return haveGroup;
+  }
+
+  public void setHaveGroup(int haveGroup) {
+    this.haveGroup = haveGroup;
   }
 
 }

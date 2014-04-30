@@ -3,6 +3,7 @@ package com.haoxw.chuanmei.controller2;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,7 @@ import com.haoxw.chuanmei.dao.TeacherOrdersItemDao;
 import com.haoxw.chuanmei.dao.TypeUserDao;
 import com.haoxw.chuanmei.dao.UserRoleDao;
 import com.haoxw.chuanmei.model.Shebei;
+import com.haoxw.chuanmei.model.ShebeiType;
 import com.haoxw.chuanmei.model.TeacherOrders;
 import com.haoxw.chuanmei.model.TeacherOrdersItem;
 import com.haoxw.chuanmei.util.CookiesUtil;
@@ -111,8 +113,8 @@ public class TeacherOrdersCheckController2 {
 		TeacherOrders teacherOrders = teacherOrdersDao.getTeacherOrdersById(id);
 //		List<Shebei> listShebeiCheck = new ArrayList<Shebei>();
 //		List<Shebei> listShebei = shebeiDao.allShebeiList();
-		List<TeacherOrdersItem> listTeacherOrdersItem = teacherOrdersItemDao
-				.allTeacherOrdersItemByOrderId(id);
+//		List<TeacherOrdersItem> listTeacherOrdersItem = teacherOrdersItemDao
+//				.allTeacherOrdersItemByOrderId(id);
 //		for (int i = 0; i < listShebei.size(); i++) {
 //			for (int j = 0; j < listTeacherOrdersItem.size(); j++) {
 //				if (listShebei.get(i).getId() == listTeacherOrdersItem.get(j)
@@ -123,13 +125,14 @@ public class TeacherOrdersCheckController2 {
 //				}
 //			}
 //		}
-//		SHEBEITYPE = new TreeMap<String,String>();
-//		List<ShebeiType> listtype = shebeiTypeDao.allShebeiType();
-//		for(int i=0;i<listtype.size();i++){
-//			SHEBEITYPE.put(listtype.get(i).getId()+"", listtype.get(i).getName());
-//		}
+		SHEBEITYPE = new TreeMap<String,String>();
+    List<ShebeiType> listtype = shebeiTypeDao.allShebeiType();
+    for(int i=0;i<listtype.size();i++){
+      SHEBEITYPE.put(listtype.get(i).getId()+"", listtype.get(i).getName());
+    }
+    modelMap.addAttribute("type", SHEBEITYPE);
 		modelMap.addAttribute("teacherOrders", teacherOrders);
-		modelMap.addAttribute("listShebei", listTeacherOrdersItem);
+//		modelMap.addAttribute("listShebei", listTeacherOrdersItem);
 		modelMap.addAttribute("title", "中国传媒大学-审核老师借用详情页");
 		modelMap.addAttribute("seo_keywords", "中国传媒大学-审核老师借用详情页");
 		modelMap.addAttribute("seo_desc", "中国传媒大学-审核老师借用详情页");

@@ -15,7 +15,7 @@
 <script charset="utf-8" src="/resources/js/tr.js"></script>
 <script type="text/javascript">
 	function goTeacherPage(page) {
-		location.href = "/teacherOrders/list?pageNo=" + page;
+		location.href = "/teacherOrders2/list?pageNo=" + page;
 	}
 </script>
 </head>
@@ -89,36 +89,5 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-	function loadSbtype() {
-		$.ajax({
-			 url: "/teacherOrders2/in2",
-			 data: {sbtype: 2},
-			 dataType: "json",
-			 success: function(list){
-				 var html = "";
-				 if (typeof(list) == "object") {
-						var len = list.length;
-						for (var i = 0; i < len; i++ ) {
-							var r = list[i];
-							html = "<tr><td align=\"center\">" + r.code + "</td><td align=\"center\">" + r.name + "</td>";
-							if (r.check > 0) {
-								html += "<td align=\"center\"><input type=\"checkbox\" checked name=\"shebeis\" value=" + r.id + " /></td></tr>";
-							} else {
-								html += "<td align=\"center\"><input type=\"checkbox\" name=\"shebeis\" value=" + r.id + " /></td></tr>";
-							} /// success end if check > 0
-							$("#equi_list tbody").append(html);
-						} // success end for 
-				 } // success end if typeof
-			 }
-		 });
-	}
-		
-	$(document).ready(function(){
-		$("#sbtype").bind("change", function(){
-			loadSbtype();
-		});
-	});
-	</script>
 </body>
 </html>

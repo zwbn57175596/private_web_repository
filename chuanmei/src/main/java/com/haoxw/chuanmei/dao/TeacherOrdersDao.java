@@ -36,8 +36,8 @@ public class TeacherOrdersDao {
 		String result = null;
 		String addsql = " insert into teacher_orders(id,userId,studentIds,sDate,eDate,"
 		    + "state,cDate,checkDate,checkUserId,jieshuDate,jieshuUserId,leaveWord,"
-		    + "remark,subject,sbTypeId, className, stuNum, expType, workTime) values"
-		    + "(?,?,?,?,?,0,now(),?,?,?,?,?,?,?,?,?,?,?,?) ";
+		    + "remark,subject,sbTypeId, className, stuNum, expType, workTime, haveGroup) values"
+		    + "(?,?,?,?,?,0,now(),?,?,?,?,?,?,?,?,?,?,?,?,?) ";
 		List<Object> listParam = new ArrayList<Object>();
 		int rows = -1;
 		String uuid = Uuid.getUUID();
@@ -58,6 +58,7 @@ public class TeacherOrdersDao {
 		listParam.add(teacherOrders.getStuNum());
 		listParam.add(teacherOrders.getExpType());
 		listParam.add(teacherOrders.getWorkTime());
+		listParam.add(teacherOrders.getHaveGroup());
 		rows = dbop.update(0, addsql, listParam);
 		if (rows > 0)
 			result = uuid;
@@ -77,7 +78,7 @@ public class TeacherOrdersDao {
 		boolean result = false;
 		String updatesql = "update teacher_orders set userId=?,studentIds=?,sDate=?,eDate = ?,"
 		    + "state=?,checkDate=?,checkUserId=?,jieshuDate=?,jieshuUserId=?,leaveWord=?,"
-		    + "remark=?,subject=?,sbTypeId=?, className=?, stuNum=?, expType=?, workTime=? where id=?";
+		    + "remark=?,subject=?,sbTypeId=?, className=?, stuNum=?, expType=?, workTime=?, haveGroup=? where id=?";
 		List<Object> listParam = new ArrayList<Object>();
 		int rows = -1;
 		listParam.add(teacherOrders.getUserId());
@@ -97,6 +98,7 @@ public class TeacherOrdersDao {
 		listParam.add(teacherOrders.getStuNum());
 		listParam.add(teacherOrders.getExpType());
 		listParam.add(teacherOrders.getWorkTime());
+		listParam.add(teacherOrders.getHaveGroup());
 		listParam.add(teacherOrders.getId());
 		rows = dbop.update(0, updatesql, listParam);
 		if (rows > 0)
@@ -144,7 +146,8 @@ public class TeacherOrdersDao {
 							teacherOrders.setStuNum(rs.getInt(17));
 							teacherOrders.setExpType(rs.getString(18));
 							teacherOrders.setWorkTime(rs.getInt(19));
-							teacherOrders.setName(rs.getString(20));
+							teacherOrders.setHaveGroup(rs.getInt(20));
+							teacherOrders.setName(rs.getString(21));
 							return teacherOrders;
 						}
 						return null;
@@ -216,7 +219,8 @@ public class TeacherOrdersDao {
               teacherOrders.setStuNum(rs.getInt(17));
               teacherOrders.setExpType(rs.getString(18));
               teacherOrders.setWorkTime(rs.getInt(19));
-              teacherOrders.setName(rs.getString(20));
+              teacherOrders.setHaveGroup(rs.getInt(20));
+              teacherOrders.setName(rs.getString(21));
 							return teacherOrders;
 						}
 						return null;
@@ -284,7 +288,8 @@ public class TeacherOrdersDao {
               teacherOrders.setStuNum(rs.getInt(17));
               teacherOrders.setExpType(rs.getString(18));
               teacherOrders.setWorkTime(rs.getInt(19));
-              teacherOrders.setName(rs.getString(20));
+              teacherOrders.setHaveGroup(rs.getInt(20));
+              teacherOrders.setName(rs.getString(21));
 							return teacherOrders;
 						}
 						return null;
@@ -338,7 +343,8 @@ public class TeacherOrdersDao {
               teacherOrders.setStuNum(rs.getInt(17));
               teacherOrders.setExpType(rs.getString(18));
               teacherOrders.setWorkTime(rs.getInt(19));
-              teacherOrders.setName(rs.getString(20));
+              teacherOrders.setHaveGroup(rs.getInt(20));
+              teacherOrders.setName(rs.getString(21));
 							return teacherOrders;
 						}
 						return null;

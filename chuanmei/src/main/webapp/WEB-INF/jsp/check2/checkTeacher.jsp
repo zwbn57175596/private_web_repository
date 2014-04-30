@@ -27,18 +27,19 @@
 			<div class="manage_right_form">
 				<table class="table_border" width="100%">
 					<tbody>
-						<c:forEach items="${listShebei}" var="row">
-							<tr>
-								<td align="center">${row.code}</td>
-								<td colspan="2" align="center">${row.name}</td>
-								<td align="center"><input type="checkbox" checked="checked"
-									name="shebeis" disabled="disabled" value="${row.id}" /></td>
-							</tr>
-						</c:forEach>
 						<tr>
-							<td colspan="4">课程名称<input type="text" readonly="readonly"
+							<td colspan="2">课程名称<input type="text" readonly="readonly"
 								class="input-title" value="${teacherOrders.subject }"
 								name="subject" /></td>
+							<td colspan="2"><b>设备类型选择:</b>
+								<select name="sbtype" id="sbtype" disabled="disabled">
+			          <c:forEach items="${type}" var="entry">
+			            <option value="${entry.key}"
+			            	<c:if test="${entry.key == teacherOrders.sbTypeId}">selected="selected"</c:if>
+			            >${entry.value}</option>
+			          </c:forEach>
+			          </select>
+							</td>
 						</tr>
 						<tr>
 							<td><b>授课班级名称:</b></td>
@@ -116,9 +117,13 @@
 								style="width: 160px" type="text" /></td>
 						</tr>
 						<tr>
-							<td colspan="4"><font color="red">学生学号(多个之间用","隔开)</font><input
-								value="${teacherOrders.studentIds}" class="input-title"
-								readonly="readonly" type="text" name="studentIds" /></td>
+							<td colspan="3"><font color="red"><b id="stu_tips">
+									<c:choose> <c:when test="${teacherOrders.haveGroup == 1}">组长学号(多个之间用\",\"隔开):</c:when>
+									<c:otherwise>学生学号(多个之间用","隔开):</c:otherwise> </c:choose> </b> </font>
+									<input value="${teacherOrders.studentIds}" class="input-title" type="text" id="studentIds" 
+										name="studentIds" size="60" readonly="readonly" /></td>
+								<td>是否分组实习<input type="checkbox" name="haveGroup" id="haveGroup" value="1" disabled="disabled"  
+									<c:if test="${teacherOrders.haveGroup == 1}">checked="checked"</c:if> /></td>
 						</tr>
 						<tr>
 							<td colspan="4"><font color="red"><b>特殊说明</b></font><input

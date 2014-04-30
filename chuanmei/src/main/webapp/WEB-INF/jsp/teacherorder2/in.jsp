@@ -29,39 +29,21 @@
 			<div class="manage_right_form">
 				<form action="/teacherOrders2/doIn" method="post" onsubmit="return fillForm()">
 					<input type="hidden" id="id" name="id" value="${teacherOrders.id}" />
-					<select name="sbtype" id="sbtype">
-          <c:forEach items="${type}" var="entry">
-            <option value="${entry.key}"
-            	<c:if test="${entry.key == sbtype}">selected="selected"</c:if>
-            >${entry.value}</option>
-          </c:forEach>
-          </select>
-					<table class="table_border" width="100%" id="equi_list">
-						<thead>
-							<tr>
-								<th>编号</th>
-								<th>名称</th>
-								<th>选择</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${listShebei}" var="row">
-							<tr>
-								<td align="center">${row.code}</td>
-								<td align="center">${row.name}</td>
-								<td align="center"><input type="checkbox"
-									<c:if test="${row.check>0}">checked</c:if>
-									name="shebeis" value="${row.id}" /></td>
-							</tr>
-						</c:forEach>
-						</tbody>
-					</table>
 					<table class="table_border" width="100%">
 						<tbody>
 							<tr>
-								<td colspan="4"><b>课程名称:</b><input type="text"
+								<td colspan="2"><b>课程名称:</b><input type="text"
 									class="input-title" value="${teacherOrders.subject }"
 									name="subject" /></td>
+								<td colspan="2"><b>设备类型选择:</b>
+									<select name="sbtype" id="sbtype">
+				          <c:forEach items="${type}" var="entry">
+				            <option value="${entry.key}"
+				            	<c:if test="${entry.key == sbtype}">selected="selected"</c:if>
+				            >${entry.value}</option>
+				          </c:forEach>
+				          </select>
+								</td>
 							</tr>
 							<tr>
                 <td><b>授课班级名称:</b></td>
@@ -122,16 +104,16 @@
 									value="${fn:substring(teacherOrders.eDate,0,10)}" style="width: 160px" type="text"
 									onclick="WdatePicker({dateFmt:'yyyy-MM-dd',disabledDays:[0,6]})" /></td>
 							</tr>
-							<tr id="student_no">
-								<td colspan="3"><font color="red"><b>学生学号(多个之间用","隔开):</b>
-									</font><input value="${teacherOrders.studentIds}" class="input-title"
-									type="text" name="studentIds" size="60" /></td>
-								<td>分<input type="text" id="groupNums" value="" size="2"/>组&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<input type="button" onclick="resetGroupTable()" value="分组" /></td>
+							<tr>
+								<td colspan="3"><font color="red"><b id="stu_tips">
+									<c:choose> <c:when test="${teacherOrders.haveGroup == 1}">组长学号(多个之间用\",\"隔开):</c:when>
+									<c:otherwise>学生学号(多个之间用","隔开):</c:otherwise> </c:choose> </b> </font>
+									<input value="${teacherOrders.studentIds}" class="input-title" type="text" id="studentIds" name="studentIds" size="60" /></td>
+								<td>是否分组实习<input type="checkbox" name="haveGroup" id="haveGroup" value="1"  
+									<c:if test="${teacherOrders.haveGroup == 1}">checked="checked"</c:if> /></td>
 							</tr>
 							<tr>
-								<td colspan="4"><font color="red"><b>特殊说明:</b></font><input
-									type="text" class="input-title"
+								<td colspan="4"><font color="red"><b>特殊说明:</b></font><input type="text" class="input-title"
 									value="${teacherOrders.leaveWord }" name="leaveWord" /></td>
 							</tr>
 							<tr>
@@ -139,42 +121,11 @@
 							</tr>
 						</tbody>
 					</table>
-					<table id="grouptable" class="table_border" width="60%">
-						<thead>
-							<tr>
-								<th width="18%">组名</th>
-								<th width="18%">组长（1人）</th>
-								<th width="64%">组员（10人以内，请以,分隔组员学号）</th>
-							</tr>
-						</thead>
-						<tbody>
-						<c:forEach items="${groups}" var="gr">
-							<tr>
-								<td><input type="text" name="group_names" value="${gr.name}"/></td>
-								<td><input type="text" name="group_leaders" value="${gr.leader}"/></td> 
-								<td><input type="text" name="group_members" size="60" value="${gr.members}"/>
-									<input type="hidden" name="group_ids" value="${gr.id}" />
-									<input type="hidden" name="group_teachersOrderIds" value="${gr.teacherOrdersId}" />
-								</td>
-							</tr>
-						</c:forEach>						
-						</tbody>
-					</table>
 				</form>
 			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
-	function resetGroupTable() {
-		var n = Number($("#groupNums").val());
-		var $tbody = $("#grouptable tbody");
-		$tbody.html("");
-		var tr = "<tr><td><input type=\"text\" name=\"group_names\" /></td><td><input type=\"text\" name=\"group_leaders\" /></td> " + 
-			"<td><input type=\"text\" name=\"group_members\" size=\"60\" /></td></tr>";
-		for (var i = 1; i <= n; i++) {
-			$tbody.append(tr);
-		}
-	}
 	
 	function fillForm() {
 		$("input[name=expType]:radio:eq(6)").val($("#other_exp").val());
@@ -207,10 +158,17 @@
 			 }
 		 });
 	}
-		
+	
 	$(document).ready(function(){
 		$("#sbtype").bind("change", function(){
 			loadSbtype($("#sbtype").val());
+		});
+		$("#haveGroup").bind("click", function(e) {
+			if($(this).attr("checked") == true) { // 分组，修改下提示就可以了
+				$("#stu_tips").text("组长学号(多个之间用\",\"隔开):");
+			} else {
+				$("#stu_tips").text("学生学号(多个之间用\",\"隔开):");
+			}
 		});
 	});
 	</script>

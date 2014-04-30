@@ -27,19 +27,19 @@
 			<div class="manage_right_form">
 				<table class="table_border" width="100%">
 					<tbody>
-						<c:forEach items="${listShebei}" var="row">
-							<tr>
-								<td align="center">${row.code}</td>
-								<td colspan="2" align="center">${row.name}</td>
-								<td align="center">
-									<input type="checkbox" checked="checked" name="shebeis" disabled="disabled" value="${row.id}" />
-								</td>
-							</tr>
-						</c:forEach>
 						<tr>
-							<td colspan="4">课程名称<input type="text" readonly="readonly"
+							<td colspan="2">课程名称<input type="text" readonly="readonly"
 								class="input-title" value="${teacherOrders.subject }"
 								name="subject" /></td>
+							<td colspan="2"><b>设备类型选择:</b>
+								<select name="sbtype" id="sbtype" disabled="disabled">
+			          <c:forEach items="${type}" var="entry">
+			            <option value="${entry.key}"
+			            	<c:if test="${entry.key == teacherOrders.sbTypeId}">selected="selected"</c:if>
+			            >${entry.value}</option>
+			          </c:forEach>
+			          </select>
+							</td>
 						</tr>
 						<tr>
                 <td><b>授课班级名称:</b></td>
@@ -101,9 +101,13 @@
 									 /></td>
 							</tr>
 						<tr>
-							<td colspan="4"><font color="red">学生学号(多个之间用","隔开)</font><input
-								value="${teacherOrders.studentIds}" class="input-title" readonly="readonly"
-								type="text" name="studentIds" size="100" /></td>
+							<td colspan="3"><font color="red"><b id="stu_tips">
+									<c:choose> <c:when test="${teacherOrders.haveGroup == 1}">组长学号(多个之间用\",\"隔开):</c:when>
+									<c:otherwise>学生学号(多个之间用","隔开):</c:otherwise> </c:choose> </b> </font>
+									<input value="${teacherOrders.studentIds}" class="input-title" type="text" id="studentIds" 
+										name="studentIds" size="60" readonly="readonly" /></td>
+								<td>是否分组实习<input type="checkbox" name="haveGroup" id="haveGroup" value="1" disabled="disabled"  
+									<c:if test="${teacherOrders.haveGroup == 1}">checked="checked"</c:if> /></td>
 						</tr>
 						<tr>
 								<td colspan="4"><font color="red"><b>特殊说明</b></font><input type="text"
@@ -116,25 +120,6 @@
 						</tr>
 					</tbody>
 				</table>
-				<table id="grouptable" class="table_border" width="60%">
-						<thead>
-							<tr>
-								<th width="18%">组名</th>
-								<th width="18%">组长（1人）</th>
-								<th width="64%">组员（10人以内，请以,分隔组员学号）</th>
-							</tr>
-						</thead>
-						<tbody>
-						<c:forEach items="${groups}" var="gr">
-							<tr>
-								<td><input type="text" name="group_names" readonly="readonly" value="${gr.name}"/></td>
-								<td><input type="text" name="group_leaders" readonly="readonly" value="${gr.leader}"/></td> 
-								<td><input type="text" name="group_members" readonly="readonly" size="60" value="${gr.members}"/>
-								</td>
-							</tr>
-						</c:forEach>						
-						</tbody>
-					</table>
 			</div>
 		</div>
 	</div>
