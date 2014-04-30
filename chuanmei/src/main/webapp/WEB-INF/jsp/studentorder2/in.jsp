@@ -45,29 +45,13 @@
 								<td><b>结束时间：</b></td>
 								<td><fmt:formatDate value="${teacherOrders.eDate}" pattern="yyyy-MM-dd" /></td>
 							</tr>
-							<tr>
-								<td colspan="4"><font color="red"><b>特殊说明：</b></font>${teacherOrders.leaveWord}</td>
-							</tr>
-							<tr>
-								<td><b>备注：</b></td>
-								<td colspan="3"><textarea name="remark" rows="3" cols="80">${studentOrders.remark}</textarea></td>
-							</tr>
-							<tr>
-								<td colspan="4" align="center"><input type="submit"
-									value="申请" /></td>
-							</tr>
-						</tbody>
-					</table>
-					<br /> <br /> 设备列表
-					<table class="table_border" width="100%">
-						<tbody>
+							<tr><td colspan="4" style="text-align: center;"><b>设备列表：</b></td></tr>
 							<c:forEach items="${listShebei}" var="row">
 								<tr>
 									<td align="center">${row.code}</td>
 									<td colspan="2" align="center">${row.name}</td>
-									<td align="center"><input type="checkbox"
-										checked="checked" name="shebeis" onclick="return false;"
-										value="${row.shebeiId}" /></td>
+									<td align="center"><input type="radio" name="shebeis" value="${row.id}" 
+										<c:if test="${row.id == studentOrders.shebeiOrders[0].shebeiId}">checked="checked"</c:if> /></td>
 								</tr>
 								<tr>
 									<td><b>预约时间：</b></td>
@@ -90,14 +74,14 @@
 										, disabledDates:['<fmt:formatDate value="${teacherOrders.eDate}" pattern="yyyy-MM-dd" />',
 										</c:otherwise>
 										</c:choose>
-										<c:forEach items="${row.shebeiOrderList}" var="s">
+										<c:forEach items="${row.orderList}" var="s">
 										<c:if test="${s.studentOrdersId != studentOrders.id}">
 										'<fmt:formatDate value="${s.sDate}" pattern="yyyy-MM-dd" />',
 										</c:if>
 										</c:forEach>
 										]})" 
 										<c:forEach items="${studentOrders.shebeiOrders}" var="s">
-										<c:if test="${s.shebeiId == row.shebeiId}">
+										<c:if test="${s.shebeiId == row.id}">
 										value="<fmt:formatDate value="${s.sDate}" pattern="yyyy-MM-dd" />"
 										</c:if>
 										</c:forEach>
@@ -110,22 +94,46 @@
 										minDate:'<fmt:formatDate value="${teacherOrders.sDate}" pattern="yyyy-MM-dd" />', 
 										maxDate:'<fmt:formatDate value="${teacherOrders.eDate}" pattern="yyyy-MM-dd" />'})" /></td> --%>
 								</tr>
-								<tr>
+								<tr class="book_record" style="display:none">
 									<td colspan="4"><table class="table_border" width="100%">
 										<thead><tr><th>预约人</th><th>预约时间</th></tr></thead>
 										<tbody>
-											<c:forEach items="${row.shebeiOrderList}" var="s">
+											<c:forEach items="${row.orderList}" var="s">
 												<tr><td>${s.studentName}</td><td><fmt:formatDate value="${s.sDate}" pattern="yyyy-MM-dd" /></td></tr>
 											</c:forEach>
 										</tbody>
 									</table></td>
 								</tr>
 							</c:forEach>
+							<tr>
+								<td colspan="4"><font color="red"><b>特殊说明：</b></font>${teacherOrders.leaveWord}</td>
+							</tr>
+							<tr>
+								<td><b>备注：</b></td>
+								<td colspan="3"><textarea name="remark" rows="3" cols="80">${studentOrders.remark}</textarea></td>
+							</tr>
+							<tr>
+								<td colspan="4" align="center"><input type="submit"
+									value="申请" /></td>
+							</tr>
 						</tbody>
 					</table>
 				</form>
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(":radio[name='shebeis']").bind("click", function(e){
+				if($(this).attr("checked") == true) {
+					$(".book_record").hide();
+					$(":input[name='sTime']").val("");
+					var i = $.inArray($(this)[0], $(":radio[name='shebeis']"));
+					$(".book_record").eq(i).show();
+				}
+			});
+			
+		});
+	</script>
 </body>
 </html>

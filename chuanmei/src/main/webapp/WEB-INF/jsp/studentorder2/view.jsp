@@ -42,21 +42,7 @@
 							<td><b>结束时间：</b></td>
 							<td><fmt:formatDate value="${teacherOrders.eDate}" pattern="yyyy-MM-dd" /></td>
 						</tr>
-						<tr>
-							<td colspan="4"><font color="red"><b>特殊说明：</b></font>${teacherOrders.leaveWord}</td>
-						</tr>
-						<tr>
-							<td><b>备注：</b></td>
-							<td colspan="3"><textarea readonly="readonly" name="remark" rows="3" cols="80">${studentOrders.remark}</textarea></td>
-						</tr>
-						<tr>
-							<td colspan="4" align="center"><input type="button" value="返回" onclick="javascript:history.back()" /></td>
-						</tr>
-					</tbody>
-				</table>
-				<br /> <br /> 设备列表
-				<table class="table_border" width="100%">
-					<tbody>
+						<tr><td colspan="4" style="text-align: center;"><b>设备列表：</b></td></tr>
 						<c:forEach items="${listShebei}" var="r">
 							<tr>
 								<td align="center" width="25%">${r.shebei.code}</td>
@@ -76,6 +62,16 @@
 									maxDate:'<fmt:formatDate value="${teacherOrders.eDate}" pattern="yyyy-MM-dd" />'})" /></td> --%>
 							</tr>
 						</c:forEach>
+						<tr>
+							<td colspan="4"><font color="red"><b>特殊说明：</b></font>${teacherOrders.leaveWord}</td>
+						</tr>
+						<tr>
+							<td><b>备注：</b></td>
+							<td colspan="3"><textarea readonly="readonly" name="remark" rows="3" cols="80">${studentOrders.remark}</textarea></td>
+						</tr>
+						<tr>
+							<td colspan="4" align="center"><input type="button" value="返回" onclick="javascript:history.back()" /></td>
+						</tr>
 					</tbody>
 				</table>
 			</div>

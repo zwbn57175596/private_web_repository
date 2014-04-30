@@ -130,7 +130,7 @@ public class ShebeiDao {
 		List<Object> listParam = new ArrayList<Object>();
 		listParam.add(type);
 		shebeiList = dbop.findListParam(0,
-				"select * from shebei where state=0 and type=? order by cDate desc",listParam,
+				"select * from shebei where type=? order by cDate desc",listParam,
 				new ResultObjectCall<Shebei>() {
 					@Override
 					public Shebei getResultObject(ResultSet rs)

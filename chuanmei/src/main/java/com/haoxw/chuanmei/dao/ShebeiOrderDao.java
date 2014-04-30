@@ -142,6 +142,28 @@ public class ShebeiOrderDao {
     }
     return null;
   }
+  
+  /**
+   * 修改一个学生提交的设备订单，
+   * @param o
+   * @return
+   */
+  public boolean updateSheBeiOrderByStudentOrdersId (ShebeiOrder o) {
+    String sql = " update shebei_order set shebeiId=?, sDate=?, eDate=?, studentId=?  where studentOrdersId = ? ";
+    List<Object> lp = new ArrayList<Object>();
+    int rw = -1;
+    lp.add(o.getShebeiId());
+    lp.add(o.getsDate());
+    lp.add(o.geteDate());
+    lp.add(o.getStudentId());
+    lp.add(o.getStudentOrdersId());
+    rw = DbOp.update(0, sql, lp);
+    if (rw > 0) {
+      return true;
+    }
+    return false;
+  }
+  
 
   /**
    * 插入一个设备实际订单
