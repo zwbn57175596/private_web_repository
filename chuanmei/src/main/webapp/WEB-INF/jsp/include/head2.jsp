@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="head">
 	<h1 class="logo">
-		<img src="/resources/images/logo.gif" alt="中国传媒大学艺术学部网上预约系统">
+		<img src="/resources/images/LOGO.gif" alt="中国传媒大学艺术学部网上预约系统">
 		中国传媒大学艺术学部网上预约系统
 	</h1>
 	<div class="login">

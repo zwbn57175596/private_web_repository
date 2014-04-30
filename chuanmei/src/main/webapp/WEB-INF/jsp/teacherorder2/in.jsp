@@ -31,7 +31,9 @@
 					<input type="hidden" id="id" name="id" value="${teacherOrders.id}" />
 					<select name="sbtype" id="sbtype">
           <c:forEach items="${type}" var="entry">
-            <option value="${entry.key}">${entry.value}</option>
+            <option value="${entry.key}"
+            	<c:if test="${entry.key == sbtype}">selected="selected"</c:if>
+            >${entry.value}</option>
           </c:forEach>
           </select>
 					<table class="table_border" width="100%" id="equi_list">

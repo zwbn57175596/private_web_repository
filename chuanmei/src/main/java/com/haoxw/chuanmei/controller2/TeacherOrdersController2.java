@@ -99,12 +99,30 @@ public class TeacherOrdersController2 {
 			modelMap.addAttribute("info", "您还未登录");
 			return "tips";
 		}
+		int sbtype = RequestUtils.getInt(request, "sbtype", 0);
+		String id = RequestUtils.getString(request, "id", null);
+		
 		SHEBEITYPE = new TreeMap<String,String>();
 		List<ShebeiType> listtype = shebeiTypeDao.allShebeiType();
 		for(int i=0;i<listtype.size();i++){
 			SHEBEITYPE.put(listtype.get(i).getId()+"", listtype.get(i).getName());
 		}
+		
+    List<Shebei> listShebei = shebeiDao.allShebeiListByType(sbtype);
+    
+    List<TeacherOrdersItem> listTeacherOrdersItem = teacherOrdersItemDao
+        .allTeacherOrdersItemByOrderId(id);
+    for (int i = 0; i < listShebei.size(); i++) {
+      for (int j = 0; j < listTeacherOrdersItem.size(); j++) {
+        if (listShebei.get(i).getId() == listTeacherOrdersItem.get(j)
+            .getShebeiId()) {
+          listShebei.get(i).setCheck(1);
+          break;
+        }
+      }
+    }
 		modelMap.addAttribute("type", SHEBEITYPE);
+		modelMap.addAttribute("sbtype", sbtype);
 		modelMap.addAttribute("title", "中国传媒大学-老师借用");
 		modelMap.addAttribute("seo_keywords", "中国传媒大学-老师借用");
 		modelMap.addAttribute("seo_desc", "中国传媒大学-老师借用");
