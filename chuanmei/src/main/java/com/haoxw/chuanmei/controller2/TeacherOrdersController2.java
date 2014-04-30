@@ -99,7 +99,7 @@ public class TeacherOrdersController2 {
 			modelMap.addAttribute("info", "您还未登录");
 			return "tips";
 		}
-		int sbtype = RequestUtils.getInt(request, "sbtype", 0);
+		int sbtype = RequestUtils.getInt(request, "sbtype", 1);
 		String id = RequestUtils.getString(request, "id", null);
 		
 		SHEBEITYPE = new TreeMap<String,String>();
@@ -123,6 +123,7 @@ public class TeacherOrdersController2 {
     }
 		modelMap.addAttribute("type", SHEBEITYPE);
 		modelMap.addAttribute("sbtype", sbtype);
+		modelMap.addAttribute("listShebei", listShebei);
 		modelMap.addAttribute("title", "中国传媒大学-老师借用");
 		modelMap.addAttribute("seo_keywords", "中国传媒大学-老师借用");
 		modelMap.addAttribute("seo_desc", "中国传媒大学-老师借用");
@@ -140,7 +141,7 @@ public class TeacherOrdersController2 {
 	@RequestMapping(value = "/in2")
 	public void in2(HttpServletRequest request, HttpServletResponse response,ModelMap modelMap)
 			throws Exception {
-		int sbtype = RequestUtils.getInt(request, "sbtype", 0);
+		int sbtype = RequestUtils.getInt(request, "sbtype", 1);
 		CookiesUtil cu = CookiesUtil.getInstance();
 		String code = cu.getCookieValue(request);
 		if (StringUtils.isEmpty(code)) {
@@ -192,7 +193,7 @@ public class TeacherOrdersController2 {
 	@RequestMapping(value = "/inupdate")
 	public String inupdate(HttpServletRequest request, ModelMap modelMap)
 			throws Exception {
-		int sbtype = RequestUtils.getInt(request, "sbtype", 0);
+		int sbtype = RequestUtils.getInt(request, "sbtype", 1);
 		CookiesUtil cu = CookiesUtil.getInstance();
 		String code = cu.getCookieValue(request);
 		if (StringUtils.isEmpty(code)) {
@@ -251,7 +252,7 @@ public class TeacherOrdersController2 {
 		String studentIds = RequestUtils.getString(request, "studentIds", null);
 		String subject = RequestUtils.getString(request, "subject", null);
 		String leaveWord = RequestUtils.getString(request, "leaveWord", null);
-		int sbtype = RequestUtils.getInt(request, "sbtype", 0);
+		int sbtype = RequestUtils.getInt(request, "sbtype", 1);
 		String id = RequestUtils.getString(request, "id", null);
 		// extends edit by zhaowei
 		String className = RequestUtils.getString(request, "className", null);
