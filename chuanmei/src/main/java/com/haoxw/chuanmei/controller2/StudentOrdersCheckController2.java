@@ -138,13 +138,14 @@ public class StudentOrdersCheckController2 {
 //			SHEBEITYPE.put(listtype.get(i).getId() + "", listtype.get(i)
 //					.getName());
 //		}
+		String sid = studentOrders.getId();
 		List<ShebeiOrder> shebeiOrderList = shebeiOrderDao.listShebeiOrderByStudentOrdersId(studentOrders.getId());
 		for (ShebeiOrder o : shebeiOrderList) {
 		  List<ShebeiOrder> bl = shebeiOrderDao.listShebeiOrderByShebeiId(o.getShebeiId());
 		  Date sd = o.getsDate();
 		  if (null != bl) {
 		    for (ShebeiOrder c : bl) {
-	       if(sd.equals(c.getsDate())) {
+	       if(sd.equals(c.getsDate()) && !c.getStudentOrdersId().equals(sid)) {
 	         o.setConfilct(c);
 	         break;
 	       }

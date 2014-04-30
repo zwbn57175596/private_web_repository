@@ -79,7 +79,7 @@
 										'<fmt:formatDate value="${s.sDate}" pattern="yyyy-MM-dd" />',
 										</c:if>
 										</c:forEach>
-										]})" 
+										],disabledDays:[0,6]})" 
 										<c:forEach items="${studentOrders.shebeiOrders}" var="s">
 										<c:if test="${s.shebeiId == row.id}">
 										value="<fmt:formatDate value="${s.sDate}" pattern="yyyy-MM-dd" />"
