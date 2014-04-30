@@ -139,6 +139,18 @@ public class StudentOrdersCheckController2 {
 //					.getName());
 //		}
 		List<ShebeiOrder> shebeiOrderList = shebeiOrderDao.listShebeiOrderByStudentOrdersId(studentOrders.getId());
+		for (ShebeiOrder o : shebeiOrderList) {
+		  List<ShebeiOrder> bl = shebeiOrderDao.listShebeiOrderByShebeiId(o.getShebeiId());
+		  Date sd = o.getsDate();
+		  if (null != bl) {
+		    for (ShebeiOrder c : bl) {
+	       if(sd.equals(c.getsDate())) {
+	         o.setConfilct(c);
+	         break;
+	       }
+	      }  
+		  }
+    }
 		modelMap.addAttribute("teacherOrders", teacherOrders);
 		modelMap.addAttribute("studentOrders", studentOrders);
 		modelMap.addAttribute("listShebei", shebeiOrderList);

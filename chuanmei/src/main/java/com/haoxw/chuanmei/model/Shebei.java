@@ -1,6 +1,7 @@
 package com.haoxw.chuanmei.model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 设备实体
@@ -26,6 +27,8 @@ public class Shebei implements java.io.Serializable{
 	private int state;
 	//辅助显示用  >1表示选中
 	private  int check;
+	
+	private List<ShebeiOrder> orderList;
 	/**
 	 * @return the code
 	 */
@@ -181,4 +184,12 @@ public class Shebei implements java.io.Serializable{
 				+ ", remark=" + remark + ", code=" + code + ", type=" + type
 				+ ", state=" + state + ", check=" + check + "]";
 	}
+
+  public List<ShebeiOrder> getOrderList() {
+    return orderList;
+  }
+
+  public void setOrderList(List<ShebeiOrder> orderList) {
+    this.orderList = orderList;
+  }
 }

@@ -44,7 +44,12 @@
 							</tr>
 							<tr>
 								<td><b>预约时间：</b></td>
-								<td colspan="3"><fmt:formatDate value="${r.sDate}" pattern="yyyy-MM-dd" /></td>
+								<td colspan="3">
+									<fmt:formatDate value="${r.sDate}" pattern="yyyy-MM-dd" />
+									<c:if test="${r.confilct != null}">
+									<font color="red"><b>(与${r.confilct.studentName}学生订单时间冲突)</b></font>
+									</c:if>
+								</td>
 								<%-- <td><b>结束时间：</b></td>
 								<td><input name="eTime" class="Wdate" readonly="readonly"
 									style="width: 160px" type="text"

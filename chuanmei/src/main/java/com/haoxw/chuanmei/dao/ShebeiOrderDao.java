@@ -93,7 +93,7 @@ public class ShebeiOrderDao {
           o.seteDate(rs.getTimestamp(6));
           
           Shebei s = new Shebei();
-          // s.setId(rs.getInt(7));
+          s.setId(rs.getInt(7));
           s.setName(rs.getString(8));
           s.setCode(rs.getString(14));
           

@@ -26,6 +26,8 @@ public class ShebeiOrder implements Serializable {
   //辅助显示用
   protected String studentName;
   
+  protected ShebeiOrder confilct;
+  
   protected Shebei shebei;
   
   public ShebeiOrder() {
@@ -94,5 +96,13 @@ public class ShebeiOrder implements Serializable {
 
   public void setShebei(Shebei shebei) {
     this.shebei = shebei;
+  }
+
+  public ShebeiOrder getConfilct() {
+    return confilct;
+  }
+
+  public void setConfilct(ShebeiOrder confilct) {
+    this.confilct = confilct;
   }
 }
