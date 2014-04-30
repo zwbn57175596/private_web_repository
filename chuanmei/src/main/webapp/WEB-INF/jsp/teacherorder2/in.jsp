@@ -125,7 +125,7 @@
 							<tr>
 								<td colspan="4"><font color="red"><b>学生学号(多个之间用","隔开):</b>
 								</font><input value="${teacherOrders.studentIds}" class="input-title"
-									type="text" name="studentIds" /></td>
+									type="text" name="studentIds" size="100" /></td>
 							</tr>
 							<tr>
 								<td colspan="4"><font color="red"><b>特殊说明:</b></font><input
