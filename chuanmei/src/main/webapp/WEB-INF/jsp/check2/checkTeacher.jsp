@@ -71,7 +71,8 @@
 								<c:choose>
 									<c:when
 										test="${teacherOrders.expType != '图片' && teacherOrders.expType != '短片' && 
-	                	teacherOrders.expType != '纪录片' && teacherOrders.expType != 'MTV' && teacherOrders.expType != '录音' && teacherOrders.expType != '毕业作品'}">
+	                	teacherOrders.expType != '纪录片' && teacherOrders.expType != 'MTV' && 
+	                	teacherOrders.expType != '录音' && teacherOrders.expType != '毕业作品'}">
 										<input type="radio" disabled="disabled" name="expType"
 											checked="checked" value="${teacherOrders.expType}" />其他
                 	<input type="text" readonly="readonly" id="other_exp"
@@ -149,8 +150,7 @@
 										cols="80">${teacherOrders.remark}</textarea></td>
 							</tr>
 							<tr>
-								<td colspan="2" align="center"><input type="submit"
-									value="提交" /></td>
+								<td colspan="2" align="center"><input type="submit" value="提交" /></td>
 							</tr>
 						</tbody>
 					</table>
