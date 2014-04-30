@@ -122,10 +122,12 @@
 									value="${fn:substring(teacherOrders.eDate,0,10)}" style="width: 160px" type="text"
 									onclick="WdatePicker({dateFmt:'yyyy-MM-dd',disabledDays:[0,6]})" /></td>
 							</tr>
-							<tr>
-								<td colspan="4"><font color="red"><b>学生学号(多个之间用","隔开):</b>
-								</font><input value="${teacherOrders.studentIds}" class="input-title"
-									type="text" name="studentIds" size="100" /></td>
+							<tr id="student_no">
+								<td colspan="3"><font color="red"><b>学生学号(多个之间用","隔开):</b>
+									</font><input value="${teacherOrders.studentIds}" class="input-title"
+									type="text" name="studentIds" size="60" /></td>
+								<td>分<input type="text" id="groupNums" value="" size="2"/>组&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="button" onclick="resetGroupTable()" value="分组" /></td>
 							</tr>
 							<tr>
 								<td colspan="4"><font color="red"><b>特殊说明:</b></font><input
@@ -137,15 +139,48 @@
 							</tr>
 						</tbody>
 					</table>
+					<table id="grouptable" class="table_border" width="60%">
+						<thead>
+							<tr>
+								<th width="18%">组名</th>
+								<th width="18%">组长（1人）</th>
+								<th width="64%">组员（10人以内，请以,分隔组员学号）</th>
+							</tr>
+						</thead>
+						<tbody>
+						<c:forEach items="${groups}" var="gr">
+							<tr>
+								<td><input type="text" name="group_names" value="${gr.name}"/></td>
+								<td><input type="text" name="group_leaders" value="${gr.leader}"/></td> 
+								<td><input type="text" name="group_members" size="60" value="${gr.members}"/>
+									<input type="hidden" name="group_ids" value="${gr.id}" />
+									<input type="hidden" name="group_teachersOrderIds" value="${gr.teacherOrdersId}" />
+								</td>
+							</tr>
+						</c:forEach>						
+						</tbody>
+					</table>
 				</form>
 			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
+	function resetGroupTable() {
+		var n = Number($("#groupNums").val());
+		var $tbody = $("#grouptable tbody");
+		$tbody.html("");
+		var tr = "<tr><td><input type=\"text\" name=\"group_names\" /></td><td><input type=\"text\" name=\"group_leaders\" /></td> " + 
+			"<td><input type=\"text\" name=\"group_members\" size=\"60\" /></td></tr>";
+		for (var i = 1; i <= n; i++) {
+			$tbody.append(tr);
+		}
+	}
+	
 	function fillForm() {
 		$("input[name=expType]:radio:eq(6)").val($("#other_exp").val());
 		return true;
 	}
+	
 	function loadSbtype(t) {
 		var d = $("#id").val();
 		$.ajax({

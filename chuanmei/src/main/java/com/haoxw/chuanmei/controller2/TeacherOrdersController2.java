@@ -21,10 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.haoxw.chuanmei.bean.Constant;
 import com.haoxw.chuanmei.dao.ShebeiDao;
 import com.haoxw.chuanmei.dao.ShebeiTypeDao;
+import com.haoxw.chuanmei.dao.StudentGroupDao;
 import com.haoxw.chuanmei.dao.TeacherOrdersDao;
 import com.haoxw.chuanmei.dao.TeacherOrdersItemDao;
 import com.haoxw.chuanmei.model.Shebei;
 import com.haoxw.chuanmei.model.ShebeiType;
+import com.haoxw.chuanmei.model.StudentGroup;
 import com.haoxw.chuanmei.model.TeacherOrders;
 import com.haoxw.chuanmei.model.TeacherOrdersItem;
 import com.haoxw.chuanmei.util.CookiesUtil;
@@ -47,6 +49,8 @@ public class TeacherOrdersController2 {
 	private ShebeiDao shebeiDao;
 	@Resource
 	private ShebeiTypeDao shebeiTypeDao;
+	@Resource
+	private StudentGroupDao studentGroupDao;
 	private Map<String, String> SHEBEITYPE;
 	/**
 	 * 老师订单列表
@@ -121,6 +125,11 @@ public class TeacherOrdersController2 {
         }
       }
     }
+    
+    // 分组信息
+    List<StudentGroup> group = studentGroupDao.getStudentGroupsByTeacherOrdersId(id);
+    
+    modelMap.addAttribute("groups", group);
 		modelMap.addAttribute("type", SHEBEITYPE);
 		modelMap.addAttribute("sbtype", sbtype);
 		modelMap.addAttribute("listShebei", listShebei);
@@ -220,6 +229,12 @@ public class TeacherOrdersController2 {
 		for(int i=0;i<listtype.size();i++){
 			SHEBEITYPE.put(listtype.get(i).getId()+"", listtype.get(i).getName());
 		}
+		
+		// 分组信息
+    List<StudentGroup> group = studentGroupDao.getStudentGroupsByTeacherOrdersId(id);
+    
+    modelMap.addAttribute("groups", group);
+    
 		modelMap.addAttribute("teacherOrders", teacherOrders);
 		modelMap.addAttribute("listShebei", listShebei);
 		modelMap.addAttribute("type", SHEBEITYPE);
@@ -247,6 +262,7 @@ public class TeacherOrdersController2 {
 			modelMap.addAttribute("info", "您还未登录");
 			return "tips";
 		}
+		
 		String sTime = RequestUtils.getString(request, "sTime", null);
 		String eTime = RequestUtils.getString(request, "eTime", null);
 		String studentIds = RequestUtils.getString(request, "studentIds", null);
@@ -268,6 +284,7 @@ public class TeacherOrdersController2 {
 			return "tips";
 		}
 		// 新增
+		String toUuid = null;
 		if (StringUtils.isEmpty(id)) {
 			TeacherOrders to = new TeacherOrders();
 			to.setsDate(DateUtil.str2Date(sTime, "yyyy-MM-dd"));
@@ -283,6 +300,7 @@ public class TeacherOrdersController2 {
 			to.setExpType(expType);
 			to.setWorkTime(workTime);
 			String uuid = teacherOrdersDao.saveTeacherOrders(to);
+			toUuid = uuid;
 			if (!StringUtils.isEmpty(uuid)) {
 				for (int i = 0; i < shebeis.length; i++) {
 					TeacherOrdersItem ti = new TeacherOrdersItem();
@@ -317,6 +335,24 @@ public class TeacherOrdersController2 {
   				}
 			}
 		}
+		
+		//学生分组
+    String groupNames[] = request.getParameterValues("group_names");
+    String groupLeaders[] = request.getParameterValues("group_leaders");
+    String groupMembers[] = request.getParameterValues("group_members");
+    if (null != groupNames) {
+      System.out.println(groupNames.length + " " + groupLeaders.length + " " + groupMembers.length);
+      StudentGroup g;
+      for (int i = 0; i < groupNames.length; i++) {
+        g = new StudentGroup();
+        g.setLeader(groupLeaders[i]);
+        g.setMembers(groupMembers[i]);
+        g.setName(groupNames[i]);
+        g.setTeacherOrdersId(toUuid);
+        studentGroupDao.insertOrUpdate(g);
+      }
+    }
+    
 		SHEBEITYPE = new TreeMap<String,String>();
 		List<ShebeiType> listtype = shebeiTypeDao.allShebeiType();
 		for(int i=0;i<listtype.size();i++){
