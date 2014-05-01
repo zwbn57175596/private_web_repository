@@ -46,9 +46,9 @@
 								<td align="left" title="${row.subject}">${fn:substring(row.subject,0,
 																		15)}</td>
 								<td align="center"><fmt:formatDate value="${row.sDate}"
-										pattern="yyyy-MM-dd HH:mm:ss" /></td>
+										pattern="yyyy-MM-dd" /></td>
 								<td align="center"><fmt:formatDate value="${row.eDate}"
-										pattern="yyyy-MM-dd HH:mm:ss" /></td>
+										pattern="yyyy-MM-dd" /></td>
 								<td align="center"><select>
 										<c:forEach items="${teacherOrderState}" var="entry">
 											<option

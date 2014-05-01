@@ -3,6 +3,7 @@ package com.haoxw.chuanmei.controller2;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,7 @@ import com.haoxw.chuanmei.dao.TeacherOrdersItemDao;
 import com.haoxw.chuanmei.dao.TypeUserDao;
 import com.haoxw.chuanmei.dao.UserRoleDao;
 import com.haoxw.chuanmei.model.ShebeiOrder;
+import com.haoxw.chuanmei.model.ShebeiType;
 import com.haoxw.chuanmei.model.StudentOrders;
 import com.haoxw.chuanmei.model.TeacherOrders;
 import com.haoxw.chuanmei.util.CookiesUtil;
@@ -53,8 +55,7 @@ public class StudentOrdersCheckController2 {
 	private TypeUserDao typeUserDao;
 	@Resource
 	private ShebeiOrderDao shebeiOrderDao;
-	@SuppressWarnings("unused")
-  private Map<String, String> SHEBEITYPE;
+	private Map<String, String> SHEBEITYPE;
 
 	/**
 	 * 待审核学生订单列表
@@ -132,12 +133,6 @@ public class StudentOrdersCheckController2 {
 //				}
 //			}
 //		}
-//		SHEBEITYPE = new TreeMap<String, String>();
-//		List<ShebeiType> listtype = shebeiTypeDao.allShebeiType();
-//		for (int i = 0; i < listtype.size(); i++) {
-//			SHEBEITYPE.put(listtype.get(i).getId() + "", listtype.get(i)
-//					.getName());
-//		}
 		String sid = studentOrders.getId();
 		List<ShebeiOrder> shebeiOrderList = shebeiOrderDao.listShebeiOrderByStudentOrdersId(studentOrders.getId());
 		for (ShebeiOrder o : shebeiOrderList) {
@@ -152,6 +147,14 @@ public class StudentOrdersCheckController2 {
 	      }  
 		  }
     }
+		
+		SHEBEITYPE = new TreeMap<String,String>();
+    List<ShebeiType> listtype = shebeiTypeDao.allShebeiType();
+    for(int i=0;i<listtype.size();i++){
+      SHEBEITYPE.put(listtype.get(i).getId()+"", listtype.get(i).getName());
+    }
+    modelMap.addAttribute("type", SHEBEITYPE);
+    
 		modelMap.addAttribute("teacherOrders", teacherOrders);
 		modelMap.addAttribute("studentOrders", studentOrders);
 		modelMap.addAttribute("listShebei", shebeiOrderList);
