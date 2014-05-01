@@ -125,13 +125,13 @@
 									<td align="center">${row.code}</td>
 									<td colspan="2" align="center">${row.name}</td>
 									<td align="center"><input type="radio" name="shebeis" value="${row.id}" 
-										<c:if test="${row.id == studentOrders.shebeiOrders[0].shebeiId}">checked="checked"</c:if> /></td>
+										<c:if test="${row.id == studentOrders.shebeiOrder.shebeiId}">checked="checked"</c:if> /></td>
 								</tr>
 								<tr>
 									<td><b>预约时间：</b></td>
 									<td colspan="3"> <input name="sTime" class="Wdate" readonly="readonly" 
 										style="width: 160px" type="text"
-										<c:if test="${row.id != studentOrders.shebeiOrders[0].shebeiId}">disabled="disabled"</c:if>
+										<c:if test="${row.id != studentOrders.shebeiOrder.shebeiId}">disabled="disabled"</c:if>
 										onclick="WdatePicker({dateFmt:'yyyy-MM-dd'
 										<c:choose>
 										<c:when test="${now < teacherOrders.sDate}">

@@ -1,7 +1,6 @@
 package com.haoxw.chuanmei.model;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * 学生订单
@@ -36,9 +35,8 @@ public class StudentOrders implements java.io.Serializable{
 	private String name;
 	private String title;
 	private TeacherOrders teacherOrders;
-	
-	private List<ShebeiOrder> shebeiOrders;
-	
+
+	private ShebeiOrder shebeiOrder;
 	
 	public String getTitle() {
 		return title;
@@ -194,17 +192,17 @@ public class StudentOrders implements java.io.Serializable{
 	public void setcDate(Date cDate) {
 		this.cDate = cDate;
 	}
-  public List<ShebeiOrder> getShebeiOrders() {
-    return shebeiOrders;
-  }
-  public void setShebeiOrders(List<ShebeiOrder> shebeiOrders) {
-    this.shebeiOrders = shebeiOrders;
-  }
   public TeacherOrders getTeacherOrders() {
     return teacherOrders;
   }
   public void setTeacherOrders(TeacherOrders teacherOrders) {
     this.teacherOrders = teacherOrders;
+  }
+  public ShebeiOrder getShebeiOrder() {
+    return shebeiOrder;
+  }
+  public void setShebeiOrder(ShebeiOrder shebeiOrder) {
+    this.shebeiOrder = shebeiOrder;
   }
 	
 }

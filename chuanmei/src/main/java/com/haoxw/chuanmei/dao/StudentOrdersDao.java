@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 import com.haoxw.chuanmei.bean.DbException;
 import com.haoxw.chuanmei.dao.base.DbOp;
 import com.haoxw.chuanmei.dao.base.ResultObjectCall;
+import com.haoxw.chuanmei.model.Shebei;
+import com.haoxw.chuanmei.model.ShebeiOrder;
 import com.haoxw.chuanmei.model.StudentOrders;
 import com.haoxw.chuanmei.model.TeacherOrders;
 import com.haoxw.chuanmei.util.DateUtil;
@@ -28,6 +30,52 @@ public class StudentOrdersDao {
 	private static final DbOp<StudentOrders> dbop = new DbOp<StudentOrders>();
 	private static boolean result = false;
 
+	
+	/**
+	 * 通过老师的订单ID来取学生有效订单的ID，（除了已打回的，都算在内）
+	 * @param id 老师订单ID
+	 * @return List<StudentOrders>
+	 * @throws DbException
+	 */
+  public List<StudentOrders> listEffectiveOrdersByTeacherOrdersId (String id) throws DbException {
+    List<Object> lp = new ArrayList<Object>();
+    String sql = " select s.*, o.shebeiId from student_orders s left join shebei_order o on s.id = o.studentOrdersId "
+        + " where s.orderId = ? and s.state <> -1 ";
+    lp.add(id);
+    
+    List<StudentOrders> r = null;
+    r = dbop.findListParam(0l, sql, lp, new ResultObjectCall<StudentOrders>() {
+      @Override
+      public StudentOrders getResultObject(ResultSet rs) throws SQLException, DbException {
+        if (rs != null) {
+          StudentOrders studentOrders = new StudentOrders();
+          studentOrders.setId(rs.getString(1));
+          studentOrders.setUserId(rs.getString(2));
+          studentOrders.setOrderId(rs.getString(3));
+          studentOrders.setcDate(rs.getTimestamp(4));
+          studentOrders.setState(rs.getInt(5));
+          studentOrders.setCheckUserId(rs.getString(6));
+          studentOrders.setJieshuUserId(rs.getString(7));
+          studentOrders.setUpdateDate(rs.getTimestamp(8));
+          studentOrders.setRemark(rs.getString(9));
+          studentOrders.setsDate(rs.getTimestamp(10));
+          studentOrders.seteDate(rs.getTimestamp(11));
+          studentOrders.setIsRed(rs.getInt(12));
+          ShebeiOrder s = new ShebeiOrder();
+          s.setShebeiId(rs.getInt(13));
+          studentOrders.setShebeiOrder(s);
+          return studentOrders;
+        }
+        return null;
+      }
+    });
+    
+    if (null != r && r.size() > 0) {
+      return r;
+    }
+    return null;
+  }
+  
 	/**
 	 * 保存
 	 * 

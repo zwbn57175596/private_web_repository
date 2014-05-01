@@ -69,7 +69,7 @@ public class ShebeiOrderDao {
   }
   
   /**
-   * 通过学生订单列表ID取其借用列表
+   * 通过学生订单列表ID取其借用数据
    * @param id studentOrdersId
    * @return List<ShebeiOrder>
    * @throws DbException
