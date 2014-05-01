@@ -27,7 +27,7 @@ public class ShebeiOrderDao {
   // private boolean flag = false;
   
   /**
-   * 通过设备ID取设备被的预约记录（只计算已审批通过的和已领取的，取大于当天的数据）
+   * 通过设备ID取设备被的预约记录（只计算已审批通过的和已领取的还有已申请的，取大于当天的数据）
    * @param id shebeiId 设备ID
    * @return List<ShebeiOrder>
    * @throws DbException
@@ -35,7 +35,7 @@ public class ShebeiOrderDao {
   public List<ShebeiOrder> listShebeiOrderByShebeiId (int id) throws DbException {
     List<Object> lp = new ArrayList<Object>();
     String sql = " select t.*, u.name from shebei_order t left join student_orders o on t.studentOrdersId = o.id " +
-        " left join user u on o.userId = u.code where t.shebeiId = ? and t.sDate >= ? and (o.state = 1 or o.state = 2) ";
+        " left join user u on o.userId = u.code where t.shebeiId = ? and t.sDate >= ? and (o.state = 1 or o.state = 2 or o.state = 0) ";
     lp.add(id);
     Calendar c = Calendar.getInstance();
     c.set(Calendar.HOUR_OF_DAY, 0);

@@ -34,15 +34,16 @@
 							<td colspan="4"><b>申请老师：</b>${teacherOrders.userId}_${teacherOrders.name}</td>
 						</tr>
 						<tr>
-							<td colspan="2"><b>设备类型选择:</b>
-								<select name="sbtype" id="sbtype" disabled="disabled">
-			          <c:forEach items="${type}" var="entry">
-			            <option value="${entry.key}"
-			            	<c:if test="${entry.key == teacherOrders.sbTypeId}">selected="selected"</c:if>
-			            >${entry.value}</option>
-			          </c:forEach>
-			          </select>
-							</td>
+							<td colspan="2">课程名称<input type="text" readonly="readonly"
+								class="input-title" value="${teacherOrders.subject }"
+								name="subject" /></td>
+							<td colspan="2"><b>设备类型选择:</b> <select name="sbtype"
+								id="sbtype" disabled="disabled">
+									<c:forEach items="${type}" var="entry">
+										<option value="${entry.key}"
+											<c:if test="${entry.key == teacherOrders.sbTypeId}">selected="selected"</c:if>>${entry.value}</option>
+									</c:forEach>
+							</select></td>
 						</tr>
 						<tr>
 							<td><b>开始时间：</b></td>

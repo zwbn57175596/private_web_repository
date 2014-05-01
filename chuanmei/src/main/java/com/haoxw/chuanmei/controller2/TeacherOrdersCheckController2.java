@@ -50,8 +50,7 @@ public class TeacherOrdersCheckController2 {
 	private UserRoleDao userRoleDao;
 	@Resource
 	private TypeUserDao typeUserDao;
-	@SuppressWarnings("unused")
-  private Map<String, String> SHEBEITYPE;
+	private Map<String, String> SHEBEITYPE;
 	/**
 	 * 列表
 	 * 

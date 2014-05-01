@@ -2,6 +2,7 @@ package com.haoxw.chuanmei.controller2;
 
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import com.haoxw.chuanmei.dao.TeacherOrdersDao;
 import com.haoxw.chuanmei.dao.TeacherOrdersItemDao;
 import com.haoxw.chuanmei.model.Shebei;
 import com.haoxw.chuanmei.model.ShebeiOrder;
+import com.haoxw.chuanmei.model.ShebeiType;
 import com.haoxw.chuanmei.model.StudentOrders;
 import com.haoxw.chuanmei.model.TeacherOrders;
 import com.haoxw.chuanmei.util.CookiesUtil;
@@ -48,7 +50,6 @@ public class StudentOrdersController2 {
   private StudentOrdersDao studentOrdersDao;
   @Resource
   private ShebeiOrderDao shebeiOrderDao;
-  @SuppressWarnings("unused")
   private Map<String, String> SHEBEITYPE;
 
   /**
@@ -149,6 +150,12 @@ public class StudentOrdersController2 {
     for (Shebei s : listShebei) {
       s.setOrderList(shebeiOrderDao.listShebeiOrderByShebeiId(s.getId()));
     }
+    SHEBEITYPE = new TreeMap<String,String>();
+    List<ShebeiType> listtype = shebeiTypeDao.allShebeiType();
+    for(int i=0;i<listtype.size();i++){
+      SHEBEITYPE.put(listtype.get(i).getId()+"", listtype.get(i).getName());
+    }
+    modelMap.addAttribute("type", SHEBEITYPE);
     modelMap.addAttribute("teacherOrders", teacherOrders);
     modelMap.addAttribute("studentOrders", studentOrders);
     modelMap.addAttribute("listShebei", listShebei);
@@ -199,6 +206,12 @@ public class StudentOrdersController2 {
     // }
     // List<TeacherOrdersItem> listTeacherOrdersItem = teacherOrdersItemDao
     // .allTeacherOrdersItemByOrderId(id);
+    SHEBEITYPE = new TreeMap<String,String>();
+    List<ShebeiType> listtype = shebeiTypeDao.allShebeiType();
+    for(int i=0;i<listtype.size();i++){
+      SHEBEITYPE.put(listtype.get(i).getId()+"", listtype.get(i).getName());
+    }
+    modelMap.addAttribute("type", SHEBEITYPE);
     List<ShebeiOrder> shebeiOrderList = shebeiOrderDao.listShebeiOrderByStudentOrdersId(studentOrders.getId());
     modelMap.addAttribute("teacherOrders", teacherOrders);
     modelMap.addAttribute("studentOrders", studentOrders);
