@@ -12,7 +12,7 @@
 <meta name="description" content="${seo_desc}" />
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
 <script charset="utf-8" src="/resources/js/jquery-1.5.min.js"></script>
-<script charset="utf-8" src="/resources/js/tr.js"></script>>
+<script charset="utf-8" src="/resources/js/tr.js"></script>
 </head>
 <body>
 	<div class="manage-container">
@@ -42,11 +42,11 @@
 							</td>
 						</tr>
 						<tr>
-                <td><b>授课班级名称:</b></td>
-                <td><input name="className" readonly="readonly"
-                  style="width: 160px" type="text" value="${teacherOrders.claName}" /></td>
-                <td><b>班级人数:</b></td>
-                <td><input name="stuNum" readonly="readonly" style="width: 160px" type="text" value="${teacherOrders.stuNum}"/></td>
+							<td><b>授课班级名称:</b></td>
+							<td><input name="className" readonly="readonly"
+							  style="width: 160px" type="text" value="${teacherOrders.claName}" /></td>
+							<td><b>班级人数:</b></td>
+							<td><input name="stuNum" readonly="readonly" style="width: 160px" type="text" value="${teacherOrders.stuNum}"/></td>
               </tr>
               <tr>
                 <td colspan="4"><b>试验形式:</b>
