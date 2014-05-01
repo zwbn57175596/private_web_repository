@@ -30,7 +30,7 @@
 				<table class="table_border" width="100%">
 					<tbody>
 						<tr>
-							<th>标题</th>
+							<th>课程名称</th>
 							<th>开始时间</th>
 							<th>结束时间</th>
 							<th>状态</th>

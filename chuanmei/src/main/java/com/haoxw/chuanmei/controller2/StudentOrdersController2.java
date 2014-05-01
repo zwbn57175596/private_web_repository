@@ -147,13 +147,15 @@ public class StudentOrdersController2 {
     // }
     // }
     List<StudentOrders> listOrders = studentOrdersDao.listEffectiveOrdersByTeacherOrdersId(teacherOrders.getId(), code);
-    List<Shebei> listShebei = null;
+
     int limit = teacherOrders.getWorkTime(); // 次数限制 预约条件超出的，不在允许学生通过这个老师的订单来预约
-    if (null != listOrders && listOrders.size() < limit) {
-      listShebei = shebeiDao.allShebeiListByType(teacherOrders.getSbTypeId());
-      for (Shebei s : listShebei) {
-        s.setOrderList(shebeiOrderDao.listShebeiOrderByShebeiId(s.getId()));
-      }
+    List<Shebei> listShebei = shebeiDao.allShebeiListByType(teacherOrders.getSbTypeId());
+    for (Shebei s : listShebei) {
+      s.setOrderList(shebeiOrderDao.listShebeiOrderByShebeiId(s.getId()));
+    }
+    if (null != listOrders && listOrders.size() >= limit) {
+      modelMap.addAttribute("info", "您这个课程下的设备借用天数已用完");
+      return "tips";
     }
 
     // List<Shebei> remove = new ArrayList<Shebei>();
