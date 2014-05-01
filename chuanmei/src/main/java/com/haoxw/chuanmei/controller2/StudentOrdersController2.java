@@ -250,25 +250,27 @@ public class StudentOrdersController2 {
     String shebeis[] = request.getParameterValues("shebeis");
     String sTimes[] = request.getParameterValues("sTime");
     
-
     // TeacherOrders to = teacherOrdersDao.getTeacherOrdersById(id);
     String sTime = "";
-    for (String t : sTimes) {
-      if (null != t && !"".equals(t)) {
-        sTime =  t;
-        break;
+    if (null != sTimes) {
+      for (String t : sTimes) {
+        if (null != t && !"".equals(t)) {
+          sTime =  t;
+          break;
+        }
       }
     }
-    
     boolean haveShebeiId = false;
-    for (int i = 0; i < shebeis.length; i++) {
-      String c = sTimes[i];
-      if (null != c && !"".equals(c)) {
-        haveShebeiId = true;
-        break;
+    if (null != shebeis) {
+      for (int i = 0; i < shebeis.length; i++) {
+        String c = sTimes[i];
+        if (null != c && !"".equals(c)) {
+          haveShebeiId = true;
+          break;
+        }
       }
     }
-    if (null == sTime || "".equals(sTime) || !haveShebeiId) {
+    if ("".equals(sTime) || !haveShebeiId) {
       modelMap.addAttribute("info", "请至少提交一个设备的预约时间");
       return "tips";
     }
