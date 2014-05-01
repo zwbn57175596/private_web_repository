@@ -249,11 +249,7 @@ public class StudentOrdersController2 {
     // Date e = DateUtil.str2Date(eTime, "yyyy-MM-dd");
     String shebeis[] = request.getParameterValues("shebeis");
     String sTimes[] = request.getParameterValues("sTime");
-
-    if (null == sTimes || null == shebeis) {
-      modelMap.addAttribute("info", "请至少提交一个设备的预约");
-      return "tips";
-    }
+    
 
     // TeacherOrders to = teacherOrdersDao.getTeacherOrdersById(id);
     String sTime = "";
@@ -264,6 +260,18 @@ public class StudentOrdersController2 {
       }
     }
     
+    boolean haveShebeiId = false;
+    for (int i = 0; i < shebeis.length; i++) {
+      String c = sTimes[i];
+      if (null != c && !"".equals(c)) {
+        haveShebeiId = true;
+        break;
+      }
+    }
+    if (null == sTime || "".equals(sTime) || !haveShebeiId) {
+      modelMap.addAttribute("info", "请至少提交一个设备的预约时间");
+      return "tips";
+    }
 
     // 修改
     if (!StringUtils.isEmpty(sid)) {

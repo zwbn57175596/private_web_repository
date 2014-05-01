@@ -129,8 +129,10 @@
 								</tr>
 								<tr>
 									<td><b>预约时间：</b></td>
-									<td colspan="3"> <input name="sTime" class="Wdate" readonly="readonly"
-										style="width: 160px" type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'
+									<td colspan="3"> <input name="sTime" class="Wdate" readonly="readonly" 
+										style="width: 160px" type="text"
+										<c:if test="${row.id != studentOrders.shebeiOrders[0].shebeiId}">disabled="disabled"</c:if>
+										onclick="WdatePicker({dateFmt:'yyyy-MM-dd'
 										<c:choose>
 										<c:when test="${now < teacherOrders.sDate}">
 										, minDate:'<fmt:formatDate value="${teacherOrders.sDate}" pattern="yyyy-MM-dd" />'
@@ -202,8 +204,10 @@
 				if($(this).attr("checked") == true) {
 					$(".book_record").hide();
 					$(":input[name='sTime']").val("");
+					$(":input[name='sTime']").attr("disabled", "disabled");
 					var i = $.inArray($(this)[0], $(":radio[name='shebeis']"));
 					$(".book_record").eq(i).show();
+					$(":input[name='sTime']").eq(i).removeAttr("disabled");
 				}
 			});
 			
