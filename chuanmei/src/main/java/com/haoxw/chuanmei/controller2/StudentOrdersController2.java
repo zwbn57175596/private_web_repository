@@ -1,6 +1,5 @@
 package com.haoxw.chuanmei.controller2;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -147,31 +146,38 @@ public class StudentOrdersController2 {
     // }
     // }
     // }
-    List<StudentOrders> listOrders = studentOrdersDao.listEffectiveOrdersByTeacherOrdersId(teacherOrders.getId());
-    int limit = teacherOrders.getWorkTime(); // 次数限制
-    List<Shebei> listShebei = shebeiDao.allShebeiListByType(teacherOrders.getSbTypeId());
-    List<Shebei> remove = new ArrayList<Shebei>();
-    for (Shebei s : listShebei) {
-      int times = 0;
-      if (null != listOrders) {
-        for (StudentOrders so : listOrders) {
-          if (so.getShebeiOrder().getShebeiId() == s.getId()) {
-            times ++;
-          }
-        }
-        if (times >= limit) { // 预约条件超出的，不在允许学生通过这个老师的订单来预约
-          remove.add(s);
-        } 
+    List<StudentOrders> listOrders = studentOrdersDao.listEffectiveOrdersByTeacherOrdersId(teacherOrders.getId(), code);
+    List<Shebei> listShebei = null;
+    int limit = teacherOrders.getWorkTime(); // 次数限制 预约条件超出的，不在允许学生通过这个老师的订单来预约
+    if (null != listOrders && listOrders.size() < limit) {
+      listShebei = shebeiDao.allShebeiListByType(teacherOrders.getSbTypeId());
+      for (Shebei s : listShebei) {
+        s.setOrderList(shebeiOrderDao.listShebeiOrderByShebeiId(s.getId()));
       }
-      s.setOrderList(shebeiOrderDao.listShebeiOrderByShebeiId(s.getId()));
     }
-    // 移除超出条件的
-    listShebei.removeAll(remove);
-    
-    SHEBEITYPE = new TreeMap<String,String>();
+
+    // List<Shebei> remove = new ArrayList<Shebei>();
+    // for (Shebei s : listShebei) {
+    // int times = 0;
+    // if (null != listOrders) {
+    // for (StudentOrders so : listOrders) {
+    // if (so.getShebeiOrder().getShebeiId() == s.getId()) {
+    // times ++;
+    // }
+    // }
+    // if (times >= limit) { // 预约条件超出的，不在允许学生通过这个老师的订单来预约
+    // remove.add(s);
+    // }
+    // }
+    // s.setOrderList(shebeiOrderDao.listShebeiOrderByShebeiId(s.getId()));
+    // }
+    // // 移除超出条件的
+    // listShebei.removeAll(remove);
+
+    SHEBEITYPE = new TreeMap<String, String>();
     List<ShebeiType> listtype = shebeiTypeDao.allShebeiType();
-    for(int i=0;i<listtype.size();i++){
-      SHEBEITYPE.put(listtype.get(i).getId()+"", listtype.get(i).getName());
+    for (int i = 0; i < listtype.size(); i++) {
+      SHEBEITYPE.put(listtype.get(i).getId() + "", listtype.get(i).getName());
     }
     modelMap.addAttribute("type", SHEBEITYPE);
     modelMap.addAttribute("teacherOrders", teacherOrders);
@@ -224,10 +230,10 @@ public class StudentOrdersController2 {
     // }
     // List<TeacherOrdersItem> listTeacherOrdersItem = teacherOrdersItemDao
     // .allTeacherOrdersItemByOrderId(id);
-    SHEBEITYPE = new TreeMap<String,String>();
+    SHEBEITYPE = new TreeMap<String, String>();
     List<ShebeiType> listtype = shebeiTypeDao.allShebeiType();
-    for(int i=0;i<listtype.size();i++){
-      SHEBEITYPE.put(listtype.get(i).getId()+"", listtype.get(i).getName());
+    for (int i = 0; i < listtype.size(); i++) {
+      SHEBEITYPE.put(listtype.get(i).getId() + "", listtype.get(i).getName());
     }
     modelMap.addAttribute("type", SHEBEITYPE);
     List<ShebeiOrder> shebeiOrderList = shebeiOrderDao.listShebeiOrderByStudentOrdersId(studentOrders.getId());
@@ -267,13 +273,13 @@ public class StudentOrdersController2 {
     // Date e = DateUtil.str2Date(eTime, "yyyy-MM-dd");
     String shebeis[] = request.getParameterValues("shebeis");
     String sTimes[] = request.getParameterValues("sTime");
-    
+
     // TeacherOrders to = teacherOrdersDao.getTeacherOrdersById(id);
     String sTime = "";
     if (null != sTimes) {
       for (String t : sTimes) {
         if (null != t && !"".equals(t)) {
-          sTime =  t;
+          sTime = t;
           break;
         }
       }

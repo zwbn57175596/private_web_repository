@@ -33,15 +33,17 @@ public class StudentOrdersDao {
 	
 	/**
 	 * 通过老师的订单ID来取学生有效订单的ID，（除了已打回的，都算在内）
-	 * @param id 老师订单ID
+	 * @param orderId 老师订单ID
+	 * @param studentCode 学生CODE
 	 * @return List<StudentOrders>
 	 * @throws DbException
 	 */
-  public List<StudentOrders> listEffectiveOrdersByTeacherOrdersId (String id) throws DbException {
+  public List<StudentOrders> listEffectiveOrdersByTeacherOrdersId (String orderId, String studentCode) throws DbException {
     List<Object> lp = new ArrayList<Object>();
     String sql = " select s.*, o.shebeiId from student_orders s left join shebei_order o on s.id = o.studentOrdersId "
-        + " where s.orderId = ? and s.state <> -1 ";
-    lp.add(id);
+        + " where s.orderId = ? and s.userId = ? and s.state <> -1 ";
+    lp.add(orderId);
+    lp.add(studentCode);
     
     List<StudentOrders> r = null;
     r = dbop.findListParam(0l, sql, lp, new ResultObjectCall<StudentOrders>() {
