@@ -5,9 +5,13 @@ $(function(){
 	window.showCityList = function () {
 		$(".city_panel").fadeIn(100);
 	}
-	
 	$(".city_panel").on("mouseleave", function(e){
 		$(".city_panel").fadeOut(100);	
+	}).on("mouseover", function(e){
+		e.stopPropagation();
+	});
+	$(".top").on("mouseleave", function(e){
+		$(".city_panel").fadeOut(100);
 	});
 	// search type
 	$(".search_shops").on("click", function(e){
@@ -36,7 +40,16 @@ $(function(){
 		$(".multinav_tips .tip").hide();
 	}
 	
-	// $(".multinav_bar").on("mouseleave", clearSelected);
+	$(".multinav_bar").on("mouseleave", function( e ){
+		var mx = e.pageX;
+		var my = e.pageY;
+		var mb_left = $( this ).offset().left;
+		var mb_top = $( this ).offset().top;
+		var mb_bottom = $( this ).offset().top + $( this ).height();
+		if ( mx <= mb_left || my <= mb_top || my >= mb_bottom){
+			clearSelected();
+		}
+	});
 	$(".multinav_bar li").each(function (index, element) {
 		$(this).on("mouseover", function (e){
 			var obj=$(this).offset(); 
