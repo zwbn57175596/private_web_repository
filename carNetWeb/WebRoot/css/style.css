@@ -32,7 +32,7 @@ body{text-align:center;
 .top_line{
     width:100%;
     height:1px;
-    background:#ff3600;
+    background:#00aeef;
 }
 
 .body_main{
@@ -68,7 +68,7 @@ body{text-align:center;
 
 .get_article a{
     display:block;
-    color:#ff3600;
+    color:#00aeef;
 }
 
 .today_hot{
@@ -81,7 +81,7 @@ body{text-align:center;
 
 .today_hot p{
     font-weight:600;
-    color:#ff3600;
+    color:#00aeef;
 }
 
 .today_hot p a{
@@ -162,7 +162,7 @@ body{text-align:center;
 .nav_main .nav_main_list ul li a:hover{
     border-left:1px solid #D5D5D5;
     border-right:1px solid #D5D5D5;
-    color:#ff3600;
+    color:#00aeef;
 }
 
 
@@ -191,7 +191,7 @@ body{text-align:center;
 }
 
 .nav_main .nav_aboutus ul li a:hover{
-    color:#ff3600;
+    color:#00aeef;
 }
 
 .tag_nav{
@@ -235,7 +235,7 @@ body{text-align:center;
 }
 
 .tag_nav_up ul li a:hover{
-    color:#ff3600;
+    color:#00aeef;
 }
 
 .tag_nav_down{
@@ -260,7 +260,7 @@ body{text-align:center;
 
 
 .tag_nav_down ul li a:hover{
-    color:#ff3600;
+    color:#00aeef;
 }
 
 .tag_nav_right{
@@ -316,7 +316,7 @@ body{text-align:center;
 }
 
 .focus_title2 a{
-    color:#ff3600;
+    color:#00aeef;
 }
 
 .focus_title span a:hover{
@@ -398,7 +398,7 @@ body{text-align:center;
 }
 
 .news_list ul li a:hover{
-    color:#ff3600;
+    color:#00aeef;
     text-decoration:underline;
 }
 
@@ -406,7 +406,7 @@ body{text-align:center;
     float:left;
     width:178px;
     height:166px;
-    background:#ff3600;
+    background:#00aeef;
     border-left:1px dotted #fff;
     padding-left:12px;
     overflow:hidden;
@@ -557,7 +557,7 @@ body{text-align:center;
     margin-right:3px;
 }
 
-.the_last ul li.fli {background:#ff3600;}
+.the_last ul li.fli {background:#00aeef;}
 
 .the_last ul {overflow:hidden;
     zoom:1;
@@ -675,7 +675,7 @@ body{text-align:center;
     font-size: 12px;
     height:20px;
     line-height: 20px;
-    background:#ff3600;
+    background:#00aeef;
     text-align:center;
 }
 
@@ -684,7 +684,7 @@ body{text-align:center;
 }
 
 .the_last #tab_con div ul li a{
-    color:#ff3600;
+    color:#00aeef;
 }
 
 .the_last #tab_con div ul li a:hover{
@@ -838,7 +838,7 @@ body{text-align:center;
 }
 
 .text_article h3 a{
-    color:#ff3600;
+    color:#00aeef;
 }
 
 .text_article h3 a:hover{
@@ -898,17 +898,17 @@ body{text-align:center;
 }
 
 .main_right a:hover{
-   background:#ff3600;
+   background:#00aeef;
 }
 .check_on_color{
-	background:#ff3600;
+	background:#00aeef;
 }
 
 
 .list p,.main_right h3{
     width:264px;
     height:30px;
-    background:#ff3600;
+    background:#00aeef;
     color:#FFF;
     line-height:30px;
     padding-left:10px;
@@ -972,7 +972,7 @@ body{text-align:center;
     margin-top: 10px;
 }
 .hqb_model{display: inline-block;width:150px;overflow: hidden;}
-.hqb_price{display: inline-block;color:#ff3600;text-align: right;width:50px;overflow: hidden;}
+.hqb_price{display: inline-block;color:#00aeef;text-align: right;width:50px;overflow: hidden;}
 .hqb_date{display: none;}
 .hqb_price_nc{color:#008;display: inline-block;width:50px;overflow: hidden;text-align: right;}
 .hqb_price_up{color:#800;display: inline-block;width:50px;overflow: hidden;text-align: right;}
@@ -984,7 +984,7 @@ body{text-align:center;
     width:1020px;
     height:220px;
     margin-top:40px;
-    border-top:26px #ff3600 solid;
+    border-top:26px #00aeef solid;
 }
 
 .bottom_main{
@@ -1068,8 +1068,8 @@ body{text-align:center;
 }
 /*.wp-pagenavi{text-align:center;font-size:12px;margin-top:30px;clear:both;}*/
 .wp-pagenavi{text-align:center;font-size:12px;margin-top:30px;clear:both;}
-.wp-pagenavi span,.wp-pagenavi a{background-color:#ff3600;color:#fff;border:1px solid #ff3600;text-decoration: none;padding: 3px 5px;margin: 2px;}
-.wp-pagenavi span.current,.wp-pagenavi a:hover{background-color:transparent;color:#ff3600;}
+.wp-pagenavi span,.wp-pagenavi a{background-color:#00aeef;color:#fff;border:1px solid #00aeef;text-decoration: none;padding: 3px 5px;margin: 2px;}
+.wp-pagenavi span.current,.wp-pagenavi a:hover{background-color:transparent;color:#00aeef;}
 .wp-pagenavi span.current{font-weight: bold;}
 .list-title{font-size: 14px;color:#888;margin: 20px 0;}
 
@@ -1106,7 +1106,7 @@ body{text-align:center;
 #bdshare iframe{padding-top:4px;}
 .single .post_content h2{font-weight:bold;font-size:150%;margin:1em 0;}
 .single .post_content h3{font-weight:bold;font-size:125%;margin:1em 0;}
-.post_content a{color:#ff3600;}
+.post_content a{color:#00aeef;}
 .post_content ol,.post_content ul{margin:20px 0 20px 40px;}
 .post_content ol li{list-style-type:decimal;}
 .post_content ul li{list-style-type:disc;}
@@ -1126,8 +1126,8 @@ blockquote{border-left:5px solid #eee;margin:20px;padding:15px;clear:both;}
 #jiathis_style_24x24 iframe{float:left;margin-right:3px;}
 .authorpigtwo{
     margin:30px 0 10px -10px;
-    border-top:2px solid #ff3600;
-    border-bottom:1px solid #ff3600;
+    border-top:2px solid #00aeef;
+    border-bottom:1px solid #00aeef;
     font-size:12px;
     padding:10px;
 }
@@ -1140,7 +1140,7 @@ blockquote{border-left:5px solid #eee;margin:20px;padding:15px;clear:both;}
 .author_article_list>span{font-weight:bold;}
 .post_content h2>span.i{display: inline-block;
     margin-right: 10px;
-    background-color: #ff3600;
+    background-color: #00aeef;
     color: #fff;
     padding: 2px 10px;
     border-radius: 10px;
@@ -1194,10 +1194,10 @@ div.post.sticky{background:url(/images/sticky@2x.png) right bottom no-repeat;bac
     width:620px;
     height:30px;
     font-size:18px;
-    color:#ff3600;
+    color:#00aeef;
 }
 .title_BiaoTi a {
-    color:#ff3600;
+    color:#00aeef;
 }
 .title_BiaoTiss{
     float:left;
@@ -1206,10 +1206,10 @@ div.post.sticky{background:url(/images/sticky@2x.png) right bottom no-repeat;bac
     width:470px;
     height:30px;
     font-size:18px;
-    color:#ff3600;
+    color:#00aeef;
 }
 .title_BiaoTiss a {
-    color:#ff3600;
+    color:#00aeef;
 }
 .title_sll{
     width:620px;
@@ -1375,7 +1375,7 @@ div.post.sticky{background:url(/images/sticky@2x.png) right bottom no-repeat;bac
     height:36px;
     margin-top:40px;
     margin-left:20px;
-    background:#ff3600;
+    background:#00aeef;
 }
 .lei_aut_kait span{
     display:block;
@@ -1397,7 +1397,7 @@ div.post.sticky{background:url(/images/sticky@2x.png) right bottom no-repeat;bac
 .lei_jinqi_top{
     width:270px;
     height:30px;
-    background:#ff3600;
+    background:#00aeef;
 }
 .lei_jinqi_ping{
     float:left;
@@ -1678,7 +1678,7 @@ div.post.sticky{background:url(/images/sticky@2x.png) right bottom no-repeat;bac
     float:left;
     width:100px;
     height:30px;
-    background:#ff3600;
+    background:#00aeef;
     margin-top:15px;
     margin-left:540px;
     margin-bottom:8px;
@@ -1990,7 +1990,7 @@ div.post.sticky{background:url(/images/sticky@2x.png) right bottom no-repeat;bac
     float:left;
     width:125px;
     height:30px;
-    background:#ff3600;
+    background:#00aeef;
 }
 .zuoRightBack span{
     float:left;
