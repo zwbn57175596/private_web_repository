@@ -600,6 +600,11 @@ body{text-align:center;
     height: 95px;
 }
 
+.the_last #tab_con div.evaluating div{
+	width: 242px;
+	height: 95px;
+}
+
 .the_last #tab_con div.evaluating ul{
     margin-top:-4px;
     margin-left:0px;
