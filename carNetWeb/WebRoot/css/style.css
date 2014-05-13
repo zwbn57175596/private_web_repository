@@ -545,7 +545,8 @@ body{text-align:center;
     height:366px;
 }
 
-.the_last ul li {float:left;
+.the_last ul li {
+	float:left;
     width:120px;
     height:42px;
     line-height:42px;
@@ -694,6 +695,14 @@ body{text-align:center;
 
 .the_last #tab_con div ul li a:hover{
     text-decoration:underline;
+}
+
+.the_last #tab_con div ul li div {
+	float:left;
+}
+
+.the_last #tab_con div ul li div h3 {
+	color: #8e8e8e;
 }
 
 .the_last #tab_con div.fdiv {display:block; }
