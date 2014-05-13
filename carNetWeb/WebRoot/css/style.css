@@ -699,10 +699,22 @@ body{text-align:center;
 
 .the_last #tab_con div ul li div {
 	float:left;
+	width: 100%;
+	height: 100%;
+	display: block;
+	text-align: center;
+	padding: 0;
+	margin: 15 0;
+	color: #8e8e8e;
 }
 
 .the_last #tab_con div ul li div h3 {
-	color: #8e8e8e;
+	font-size: 18px;
+}
+
+.the_last #tab_con div ul li div p {
+	font-size: 14px;
+	margin-top: 10px;
 }
 
 .the_last #tab_con div.fdiv {display:block; }
