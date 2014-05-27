@@ -281,11 +281,12 @@ body{
 	background: #1db9ec;
 }
 
-.right_comms .news_message {
+.right_comms .right_content {
 	height: 259px;
+	display: none;
 }
 
-.right_comms .news_message h3 {
+.right_comms .right_content h3 {
 	font-size: 18px;
 	font-weight: bold;
 	color: #808080;
@@ -293,14 +294,14 @@ body{
 	margin-top: 5px;
 }
 
-.right_comms .news_message p {
+.right_comms .right_content p {
 	color: #898989;
 	text-align: center;
 	margin-top: 1px;
 }
 
-.right_comms .calender {
-	display: none;
+.right_comms .show {
+	display: block;
 }
 
 .right_advlist {
@@ -310,3 +311,36 @@ body{
 .right_advlist .adv {
 	margin-bottom: 6px;
 }
+
+.footer {
+	width: 100%;
+	background: url(../images/footer_bg.png) repeat-y;
+	padding: 40px 120px;
+}
+
+.footer_list {
+	float: left;
+	margin-right: 200px;
+}
+
+.footer_list h3 {
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: bolder;
+	margin-bottom: 14px;
+}
+
+.footer_list ul li {
+	font-size: 14px;
+	font-weight: bold;
+	color: #a7b5c6;
+	text-align: left;
+	height: 28px;
+	line-height: 28px;
+}
+
+.img ul li {
+	height: 100%;
+	line-height: 100%;
+}
+	

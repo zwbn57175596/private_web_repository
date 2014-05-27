@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <title>先锋车联网</title>
 <link href="css/style.css" rel="stylesheet" />
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 <body>
 	<div class="header">
@@ -85,7 +86,7 @@
             	<li class="focus">最新专题</li>
                 <li>活动日历</li>
             </ul>
-            <div class="news_message show">
+            <div class="right_content show">
             	<h3>真实的车联网</h3>
                 <p>汽车、后市场、媒体、移动互联网、大数据、云计算</p>
                 <h3>汽车后市场大数据</h3>
@@ -95,10 +96,20 @@
                 <h3>汽车后市场大数据</h3>
                 <p>未来几年、类似车载黑匣子的系统会自动记录车辆的大量数据</p>
             </div>
-            <div class="calender">
+            <div class="right_content">
             	this is the calender
             </div>
-        </div><!-- right_comms end -->
+        </div>
+        <script><!--// 
+			$(".right_comms li").on("mousemove", function(e){
+				var i = $(".right_comms li").index($(this));
+				$(".right_comms li").removeClass("focus");
+				$(".right_comms li:eq(" + i + ")").addClass("focus");
+				$(".right_content").removeClass("show");
+				$(".right_content:eq(" + i + ")").addClass("show");
+			});
+		--></script>
+        <!-- right_comms end -->
         <div class="right_advlist">
       		<div class="adv">
             	<img src="images/adv_1.png" />
@@ -113,6 +124,42 @@
       </div><!-- main_right end -->
     </div><!-- main end -->
     <!-- no footer -->
-    <!-- <div class="footer"></div> -->
+    <div class="clear"></div>
+    <div class="footer">
+    	<div class="footer_list">
+        	<h3>先锋车联网</h3>
+            <ul>
+            	<li>关于我们</li>
+                <li class="new">先锋论坛</li>
+                <li>关于我们</li>
+                <li>关于我们</li>
+                <li>关于我们</li>
+                <li>关于我们</li>
+            </ul>
+        </div>
+        <div class="footer_list">
+        	<h3>先锋车联网</h3>
+            <ul>
+            	<li>关于我们</li>
+                <li class="new">先锋论坛</li>
+                <li>关于我们</li>
+                <li>关于我们</li>
+                <li>关于我们</li>
+                <li>关于我们</li>
+            </ul>
+        </div>
+        <div class="footer_list img">
+        	<h3>先锋车联网</h3>
+            <ul>
+            	<li><img src="images/plogo_1.png"</li>
+                <li><img src="images/plogo_2.png"</li>
+                <li><img src="images/plogo_3.png"</li>
+                <li><img src="images/plogo_4.png"</li>
+                <li><img src="images/plogo_5.png"</li>
+            </ul>
+        </div>
+        <div class="footer_list"></div>
+        <div class="clear"></div>
+    </div>
 </body>
 </html>
