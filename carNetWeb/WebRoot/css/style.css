@@ -320,7 +320,7 @@ body{
 
 .footer_list {
 	float: left;
-	margin-right: 200px;
+	margin-right: 180px;
 }
 
 .footer_list h3 {
@@ -339,8 +339,22 @@ body{
 	line-height: 28px;
 }
 
+.footer .img {
+	margin-right: 160px;
+}
+
 .img ul li {
 	height: 100%;
 	line-height: 100%;
 }
-	
+
+.copyright {
+	width: 240px;
+	margin-right: 0;
+}
+
+.footer_list p {
+	font-size: 12px;
+	color: #989998;
+	margin-bottom: 18px;
+}
