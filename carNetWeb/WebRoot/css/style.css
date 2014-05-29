@@ -314,12 +314,12 @@ body{
 
 .footer {
 	background: url(../images/footer_bg.png) repeat-y;
-	padding: 40px 120px;
+	padding: 40px 120px 0 120px;
 }
 
 .footer_list {
 	float: left;
-	margin-right: 180px;
+	margin-right: 160px;
 }
 
 .footer_list h3 {
