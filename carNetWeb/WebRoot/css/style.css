@@ -21,11 +21,13 @@ a:hover { text-decoration: none; }
 	clear: both;
 }
 
+
 body{
 	width: 1240px;
 	margin: 0 auto;
 	font-family: "微软雅黑", "宋体", Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
 	font-size: 12px;
+	
 }
 
 .header {
@@ -33,11 +35,21 @@ body{
 	width: 100%;
 }
 
+
+.header_float {
+	position: fixed;
+	margin-top: 0;
+	top: 0;
+	height: 120px;
+	background: #ffffff;
+}
+
 .logo {
 	background:url(../images/logo.png) no-repeat;
 	float: left;
 	width: 445px;
 	height: 111px;
+	cursor:pointer;
 }
 
 .nav {
@@ -52,6 +64,13 @@ body{
 	height: 38px;
 	border: #60caf1 2px solid;
 	border-radius: 8px;
+}
+
+.bars a{
+	color: #999;
+}
+a:hover{
+	color: #770077;
 }
 
 .bars ul {
@@ -186,6 +205,18 @@ body{
 	cursor: pointer;
 }
 
+
+.banner .banner_box a :hover{
+	color: #CC00FF;
+	box-shadow:6px 6px 6px #27342b;
+}
+
+.banner .banner_box1 a :hover{
+	color: #CC00FF;
+	box-shadow:6px 6px 6px #27342b;
+}
+
+
 .recomms {
 	float: left;
 	margin-top: 16px;
@@ -207,7 +238,7 @@ body{
 }
 
 .recomms .recomms_content li {
-	font-size: 12px;
+	font-size: 14px;
 	margin-bottom: 6px;
 }
 
@@ -225,9 +256,17 @@ body{
 
 .article {
 	margin-top: 21px;
-	border-bottom: #919191 solid 2px;
+	border-bottom: #919191 dashed 1px;
 }
 
+.pagebar{
+	font-size: 22px;
+	margin: 20px 16px 18px 30px;
+}
+
+a{
+	color:#27342b;
+}
 .article img {
 	float: left;
 }
@@ -243,6 +282,12 @@ body{
 	width: 420px;
 }
 
+
+.comments {
+	width: 670px;
+	margin-left: 248px;
+}
+
 .article p {
 	float: left;
 	margin: 0 16px 12px 30px;
@@ -256,6 +301,12 @@ body{
 .article .subtitle{
 	min-height: 12px;
 	margin-bottom: 4px;
+}
+
+
+.article_detail .subtitle {
+	font-size: 12px;
+	min-height: 12px;
 }
 
 .main_right {
@@ -311,31 +362,6 @@ body{
 	display: block;
 }
 
-.right_comms2 {
-	float: left;
-	margin-top: 16px;
-	width: 230px;	
-}
-
-.right_comms2 h3 {
-	background: #1db9ec;
-	font-size: 14px;
-	font-weight:bolder;
-	height: 22px;
-	line-height: 22px;
-	padding: 0 8px;
-	color: #ffffff;
-}
-
-.right_comms2 .recomms_content {
-	margin: 12px;
-}
-
-.right_comms2 .recomms_content li {
-	font-size: 12px;
-	margin-bottom: 6px;
-}
-
 .right_advlist {
 	margin-top: 16px;
 }
@@ -345,13 +371,14 @@ body{
 }
 
 .footer {
-	background: url(../images/footer_bg.png) repeat-y;
+	background: url(../images/beijing.png) repeat;
 	padding: 40px 120px 0 120px;
+        margin-top: 20px;
 }
 
 .footer_list {
 	float: left;
-	margin-right: 150px;
+	margin-right: 160px;
 }
 
 .footer_list h3 {
@@ -371,7 +398,7 @@ body{
 }
 
 .footer .img {
-	margin-right: 160px;
+	margin-right: 150px;
 }
 
 .img ul li {
@@ -410,6 +437,7 @@ body{
 	float: none;
 	margin-left: 16px;
 	margin-right: 16px;	
+        min-height: 20px;
 }
 
 .article_detail .article img {
@@ -500,4 +528,16 @@ body{
 	color: #a7b4bb;
 	padding: 0 12px;
 	margin-left: 44px;
+}
+
+.pmsPage .pagenext :hover{
+	background:url("${skin}/images/next2.png")no-repeat;
+}
+
+.qrcode {
+	position: fixed;
+	width: 155px;
+	height: 155px;
+	right: 0px;
+	top: 450px;
 }
