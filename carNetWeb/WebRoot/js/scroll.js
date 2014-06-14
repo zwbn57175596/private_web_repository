@@ -1,7 +1,10 @@
 // JavaScript Document
 var temp = 0;
 $(document).ready(function(e) {
-	temp = $("#qr_float").offset().top;
+	setTimeout(function(){
+		temp = $("#qr_float").offset().top - 207;
+		console.log(temp); 
+	}, 200)
 });
 
 $(window).on("scroll", function(e){

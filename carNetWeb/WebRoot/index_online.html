@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>先锋车联网</title>
+<link href="/${skin}/css/style.css" rel="stylesheet" />
+<link rel="icon" href="/${skin}/images/xf.ico" type="image/ico">
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+	[#include "../include/导航栏.html"/]
+    <div class="clear"></div>
+    <div class="main">
+   	  <div class="main_left">
+        	<div class="banner">
+			[@DocList cId='231' tId='3' count='5' orderBy='2' callLevel='1']
+				[#list list as a]
+            	<a href="${a.url}" target="_blank" title="${a.title!}"><img src="${base}${a.getPicStyle('3')!}" /></a>
+				[/#list]
+			[/@DocList]
+				<div class="banner_box">
+				[@DocList cId='232' tId='3' count='1' orderBy='2' callLevel='1']
+				[#list list as b]
+                	<h3><a href="${b.url}" target="_blank" title="${b.title!}">${b.title}</a><br/></h3>
+					<p>&gt;more</p>
+					[/#list]
+				[/@DocList]
+                </div>
+				<div class="banner_box">
+				[@DocList cId='233' tId='3' count='1' orderBy='2' callLevel='1']
+				[#list list as c]
+                	<h3><a href="${c.url}" target="_blank" title="${c.title!}">${c.title}</a><br/></h3>
+					<p>&gt;more</p>
+						[/#list]
+				[/@DocList]
+                </div>
+			<div  class="banner_box1">
+			[@DocList cId='234' tId='3' count='5' orderBy='2' callLevel='1']
+				[#list list as d]
+                <a href="${d.url}" target="_blank" title="${d.title!}"><img src="${base}${d.getPicStyle('3')!}" class="banner_right" /></a>
+				[/#list]
+			[/@DocList]
+			</div>
+			<div class="banner_box1">
+			[@DocList cId='235' tId='3' count='1' orderBy='2' callLevel='1']
+				[#list list as e]
+				<a href="${e.url}" target="_blank" title="${e.title!}"><img src="${base}${e.getPicStyle('3')!}" class="banner_right" /></a>
+				[/#list]
+			[/@DocList]
+			</div>
+        </div><!-- banner end-->
+        <div class="recomms">
+		
+        	<h3>&gt;&nbsp;产品</h3>
+            <ul class="recomms_content">
+				[@DocList cId='219' count='4' orderBy='2' callLevel='1']
+					[#list list as a]
+                <li><a href="${a.url}" title="${a.title}" target="_blank">${a.title}</a></li>
+					[/#list]
+				[/@DocList]
+            </ul>
+            <h3>&gt;&nbsp;评测</h3>
+            <ul class="recomms_content">
+               [@DocList cId='220' count='4' orderBy='2' callLevel='1']
+					[#list list as a]
+                <li><a href="${a.url}" title="${a.title}" target="_blank">${a.title}</a></li>
+					[/#list]
+				[/@DocList]
+            </ul>
+			
+		
+        </div><!-- recomms end -->
+		
+		
+		
+            
+			
+			
+        <div class="article_list">
+		
+        	<div class="head_line"></div>
+			[@DocPage orderBy='2'callLevel='1']
+				[#list page.content as a]
+				
+				<div class="article">
+					<img style="height:120px; width:180px" src="${base}${a.getPicStyle('0')!site.defImg}" />
+					<h3><a href="${a.url}" title="${a.title}" target="_blank">${a.title}</a></h3>
+					<p class="subtitle">${a.origin}&nbsp;&nbsp;.&nbsp;&nbsp;${a.releaseDate}</p>
+					<p>${a.description}</p>
+                    <div class="clear"></div>
+				</div>
+			  [/#list]
+			[/@DocPage]
+			
+        </div><!-- article_list end-->
+		
+		
+      </div><!-- main_left end-->
+      <div class="main_right">
+      	<div class="right_comms">
+        	<ul>
+            	<li class="focus">热文推荐</li>
+                <li>活动日历</li>
+            </ul>
+            <div class="right_content show">
+			[@DocList count='3' orderBy='4' callLevel='1']
+				[#list list as a]
+            	<h3><a href="${a.url}" title="${a.title}" target="_blank">[@StrLimit s=a.title l='12'/]</a></h3>
+                <p>[@StrLimit s=a.description l='18'/]</p>
+				
+				[/#list]
+			[/@DocList]
+                
+            </div>
+            <div class="right_content">
+            	[@DocList cId='226' count='3' orderBy='4' callLevel='1']
+				[#list list as a]
+            	<h3><a href="${a.url}" title="${a.title}" target="_blank">[@StrLimit s=a.title l='12'/]</a></h3>
+                <p>[@StrLimit s=a.description l='18'/]</p>
+				
+				[/#list]
+			[/@DocList]
+            </div>
+			
+			
+            
+        </div>
+       
+    
+
+        <div class="right_advlist">
+      		<div class="adv">
+            	<img src="/${skin}/images/adv_1.png" />
+            </div>
+            <div class="adv">
+            	<img src="/${skin}/images/adv_2.png" />
+            </div>
+            <div class="adv">
+            	<img src="/${skin}/images/adv_3.png" />
+            </div>
+            <div class="adv" id="qr_float">
+            	<img src="/${skin}/images/daerwei.jpg" />
+            </div>
+
+		</div> <!-- right_advlist end -->
+		
+		
+		    <!-- right_comms end -->
+		 <div >
+<!-- div标签放在页面需要展示的位置  -->
+<div id="cyQing" role="cylabs" data-use="qing"></div>
+<!-- 如果页面已有畅言的评论框，以下代码放在评论框代码的后面，来读取评论框的配置，否则需在div标签或代码中配置sid、cid(分类id) -->
+<!-- 如果页面同时使用多个实验室项目，以下代码只需要引入一次，只配置上面的div标签即可 -->
+<script type="text/javascript" charset="utf-8" src="http://changyan.itc.cn/js/??lib/jquery.js,changyan.labs.js?appid=cyrdcls2n"></script>
+
+ <script><!--// 
+			$(".right_comms li").on("mousemove", function(e){
+				var i = $(".right_comms li").index($(this));
+				$(".right_comms li").removeClass("focus");
+				$(".right_comms li:eq(" + i + ")").addClass("focus");
+				$(".right_content").removeClass("show");
+				$(".right_content:eq(" + i + ")").addClass("show");
+			});
+			
+			--></script>
+			
+			
+	</div>
+	
+      </div><!-- main_right end -->
+    </div><!-- main end -->
+    <!-- no footer -->
+    <div class="clear"></div>
+    [#include "../include/页脚.html"/]
+<script src="${skin}/js/scroll.js" type="text/javascript"></script>
+</body>
+</html>
