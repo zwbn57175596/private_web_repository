@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>先锋车联网</title>
+<meta http-equiv="keywords" content="${doc.tagStr!}"/>
+<meta http-equiv="description" content="${doc.description!}"/>
+<link href="/${skin}/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/${skin}/css/main.css" rel="stylesheet" />
+<link href="/${skin}/css/style.css" rel="stylesheet" />
+<link rel="icon" href="/${skin}/images/xf.ico" type="image/ico">
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+[#include "../include/导航栏.html"/]
+<div class="clear"></div>
+<div class="main">
+  <div class="main_left article_detail">
+    <div class="article_list to_top">
+      <div class="head_line"></div>
+      <div class="article">
+        <h3>${doc.title!}</h3>
+        <p class="subtitle">${doc.origin!'本站编辑'}&nbsp;&nbsp;${doc.releaseDate} 评论数：<a href="#SOHUCS" id="changyan_count_unit"></a> </p>
+        <p class="subtitle">标签：${doc.tagStr}</p>
+        <p>${txt!}</p>
+        <div class="pagebar">[@Page pageType='1'/]</div>
+        <div class="clear"></div>
+        <div class="row news_foot">
+          <div class="row tuijian">
+            <div class="news_center">相关文章推荐</div>
+            [@DocList tagName=doc.tagStr count='6']
+            [#list list as a]
+            <div class="col-sm-2 hover">
+              <div><a href="${a.url}"><img style="width:100px; height:80px" src="${base}${a.getPicStyle('0')!site.defImg}"></a></div>
+              <div class="font">[@StrLimit s=a.title l='10'/]</div>
+            </div>
+            [/#list]
+            [/@DocList] </div>
+        </div>
+      </div>
+      
+      <!-- div标签放在页面需要展示的位置  -->
+      <div class="xinqing" id="cyEmoji" role="cylabs" data-use="emoji"></div>
+      <!-- 如果页面已有畅言的评论框，以下代码放在评论框代码的后面，来读取评论框的配置，否则需在div标签或代码中配置sid、cid(分类id) --> 
+      <!-- 如果页面同时使用多个实验室项目，以下代码只需要引入一次，只配置上面的div标签即可 --> 
+      <script type="text/javascript" charset="utf-8" src="http://changyan.itc.cn/js/??lib/jquery.js,changyan.labs.js?appid=cyrdcls2n"></script>
+      <div class="xinqing" id="SOHUCS"></div>
+      <script type="text/javascript" src="http://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script> 
+    </div>
+    <!-- article_list end-->
+    
+    <div class="clear"></div>
+    <script>
+  (function(){
+    var appid = 'cyrdcls2n',
+    conf = 'prod_5681a08006d5f60aee82a182a54e3346';
+    var doc = document,
+    s = doc.createElement('script'),
+    h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+    s.type = 'text/javascript';
+    s.charset = 'utf-8';
+    s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+    h.insertBefore(s,h.firstChild);
+  })()
+</script> 
+  </div>
+  <div class="main_right">
+    <div class="right_comms">
+      <ul>
+        <li class="focus">热文推荐</li>
+        <li>活动日历</li>
+      </ul>
+      <div class="right_content show"> [@DocList count='3' orderBy='4' callLevel='1']
+        [#list list as a]
+        <h3><a href="${a.url}" title="${a.title}" target="_blank">[@StrLimit s=a.title l='12'/]</a></h3>
+        <p>[@StrLimit s=a.description l='14'/]</p>
+        [/#list]
+        [/@DocList] </div>
+      <div class="right_content"> [@DocList cId='226' count='3' orderBy='4' callLevel='1']
+        [#list list as a]
+        <h3><a href="${a.url}" title="${a.title}" target="_blank">[@StrLimit s=a.title l='12'/]</a></h3>
+        <p>[@StrLimit s=a.description l='14'/]</p>
+        [/#list]
+        [/@DocList] </div>
+    </div>
+    <script><!--// 
+			$(".right_comms li").on("mousemove", function(e){
+				var i = $(".right_comms li").index($(this));
+				$(".right_comms li").removeClass("focus");
+				$(".right_comms li:eq(" + i + ")").addClass("focus");
+				$(".right_content").removeClass("show");
+				$(".right_content:eq(" + i + ")").addClass("show");
+			});
+			
+			--></script>
+    <div class="right_comms2">
+      <h3>&gt;&nbsp;产品</h3>
+      <ul class="recomms_content">
+        [@DocList cId='219' count='4' orderBy='2' callLevel='1']
+        [#list list as a]
+        <li><a href="${a.url}" title="${a.title}" target="_blank">${a.title}</a></li>
+        [/#list]
+        [/@DocList]
+      </ul>
+      <h3>&gt;&nbsp;评测</h3>
+      <ul class="recomms_content">
+        [@DocList cId='220' count='4' orderBy='2' callLevel='1']
+        [#list list as a]
+        <li><a href="${a.url}" title="${a.title}" target="_blank">${a.title}</a></li>
+        [/#list]
+        [/@DocList]
+      </ul>
+      <h3>&gt;&nbsp;联系我们</h3>
+      <ul class="recomms_content">
+        <li>Email:public@iov100.com</li>
+        <li>QQ:2896888679|506087119</li>
+        <li>欢迎投稿！</li>
+      </ul>
+      <img style="" src="/${skin}/images/xianfengzhengfang.png" /> </div>
+    <!-- recomms end --> 
+    <!-- right_comms end -->
+    <div class="right_advlist">
+      <div class="adv"> <img src="/${skin}/images/adv_1.png" /> </div>
+      <div class="adv"> <img src="/${skin}/images/adv_2.png" /> </div>
+      <div class="adv"> <img src="/${skin}/images/adv_3.png" /> </div>
+    </div>
+    <!-- right_advlist end --> 
+    
+  </div>
+  <!-- main_right end --> 
+</div>
+<!-- main end --> 
+<!-- no footer -->
+<div class="clear"></div>
+[#include "../include/页脚.html"/]
+</body>
+</html>
