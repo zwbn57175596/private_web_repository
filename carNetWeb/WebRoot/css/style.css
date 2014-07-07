@@ -25,7 +25,7 @@ a:hover { text-decoration: none; }
 body{
 	width: 1240px;
 	margin: 0 auto;
-	font-family: "微软雅黑", "宋体", Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+	font-family: "微软雅黑", "宋体", Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif !important;
 	font-size: 12px;
 	
 }
@@ -34,7 +34,6 @@ body{
 	margin-top: 56px;
 	width: 100%;
 }
-
 
 .header_float {
 	position: fixed;
@@ -250,6 +249,9 @@ a:hover{
 	margin-left: 18px;
 }
 
+.article_author{
+	color:#87843b;
+}
 .head_line {
 	background: url(../images/article_head_line.png) repeat-x;
 	height: 4px;
@@ -294,9 +296,16 @@ a{
 	margin: 0 16px 12px 30px;
 	width: 420px;
 	font-size: 13px;
-	text-indent: 2em;
+	text-indent: 1.5em;
 	color: #585858;
 	min-height: 60px;
+}
+.article p a {
+	
+	font-size: 16px;
+	font-weight:bold;
+	color: #0080ff;
+
 }
 
 .article .subtitle{
@@ -308,6 +317,7 @@ a{
 .article_detail .subtitle {
 	font-size: 12px;
 	min-height: 12px;
+	color:#0080ff;
 }
 
 .main_right {
@@ -421,7 +431,7 @@ a{
 /* index end */
 /* new detail */
 .article_detail {
-	margin-left: 46px;
+	/*margin-left: 46px;*/
 }
 
 .article_detail .recomms, .article_detail .article_list {
@@ -438,7 +448,10 @@ a{
 	float: none;
 	margin-left: 16px;
 	margin-right: 16px;	
-        min-height: 20px;
+}
+
+.article_detail .article strong {
+	font-weight: bolder;
 }
 
 .article_detail .article img {
@@ -458,11 +471,25 @@ a{
 .article_detail .article p {
 	width: 860px;
 	font-size: 16px;
+	min-height: 20px;
+}
+.article_detail p {
+	width: 860px;
+	font-size: 16px;
+	margin-top:1em;margin-bottom:1em;
 }
 
 .article_detail .subtitle {
 	font-size: 12px;
 	min-height: 12px;
+}
+
+.main .cmr {
+	margin-right: 0;
+}
+
+.main .cml {
+	margin-left: 0;
 }
 
 .comments {
@@ -533,12 +560,4 @@ a{
 
 .pmsPage .pagenext :hover{
 	background:url("${skin}/images/next2.png")no-repeat;
-}
-
-.qrcode {
-	position: fixed;
-	width: 155px;
-	height: 155px;
-	top: 213px;
-	left: 1009px;
 }

@@ -4,7 +4,7 @@ $(document).ready(function(e) {
 	setTimeout(function(){
 		temp = $("#qr_float").offset().top - 207;
 		console.log(temp); 
-	}, 200)
+	}, 100)
 });
 
 $(window).on("scroll", function(e){
@@ -17,7 +17,7 @@ $(window).on("scroll", function(e){
 		$("#header").removeClass("header_float");
 		$(".main").css("margin-top", "40px");
 	}
-	
+	// qrcode 
 	if (offset >= temp) {
 		$("#qr_float").addClass("qrcode");
 	} else {
