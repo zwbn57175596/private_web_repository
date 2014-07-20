@@ -42,6 +42,7 @@ body{
 	height: 120px;
 	background: #ffffff;
 	z-index: 100;
+	width: 1240px;
 }
 
 .logo {
@@ -391,6 +392,11 @@ a{
 	float: left;
 	margin-right: 160px;
 }
+
+.footer_list a{
+	color:#0080ff;
+}
+
 
 .footer_list h3 {
 	color: #ffffff;
